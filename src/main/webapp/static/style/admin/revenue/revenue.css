@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+#revenue_container table,
+#expense_container table,
+#managerfee_container table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+	background-color: var(--color-white);
+	border-radius: 20px;
+}
+
+#revenue_container th, 
+#revenue_container td,
+#expense_container th, 
+#expense_container td,
+#managerfee_container th, 
+#managerfee_container td {
+	padding: 14px;
+	border-bottom: 2px solid #f3f3f3;
+}
+
+#managerfee_container #wait {
+	background-color: var(--color-light-gray);
+	border: 1px solid var(--color-gray);
+	padding: 4px 16px;
+	cursor: pointer;
+}
+
+#revenue_container th,
+#expense_container th,
+#managerfee_container th {
+	background: #d1d9e2;
+	font-weight: var(--weight-bold);
+}
+
+#revenue_container th:nth-of-type(1),
+#expense_container th:nth-of-type(1),
+#managerfee_container th:nth-of-type(1) {
+	border-radius: 20px 0 0 0;
+}
+
+#revenue_container th:nth-of-type(8),
+#expense_container th:nth-of-type(8),
+#managerfee_container th:nth-of-type(8) {
+	border-radius: 0 20px 0 0;
+}
+
+#revenue_container .pagingDiv,
+#expense_container .pagingDiv,
+#managerfee_container .pagingDiv {
+	display: flex;
+	justify-content: center;
+}
+
+#revenue_container .pagingDiv li,
+#expense_container .pagingDiv li,
+#managerfee_container .pagingDiv li {
+	float:left;
+	display: flex;
+	padding: 3px 5px;
+	margin: 0 12px;
+	font-size: var(--font-micro);
+}
+
+#revenue_container .pagingDiv a:link,
+#revenue_container .pagingDiv a:hover,
+#revenue_container .pagingDiv a:visited {
+	color: var(--color-black);
+}
+
+#expense_container .pagingDiv a:link,
+#expense_container .pagingDiv a:hover,
+#expense_container .pagingDiv a:visited {
+	color: var(--color-black);
+}
+
+#managerfee_container .pagingDiv a:link,
+#managerfee_container .pagingDiv a:hover,
+#managerfee_container .pagingDiv a:visited {
+	color: var(--color-black);
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.StadiumInfoDAO">
+ 	<select id="stadiumInfoAllSelect" resultType="com.gather.we.dto.StadiumInfoDTO">
+		select st_no, stadium, location, region, idletime from stadium_info
+	</select>
+	
+	<select id="stadiumInfoOneSelect" resultType="com.gather.we.dto.StadiumInfoDTO">
+		select st_no, stadium, location, region, idletime from stadium_info
+		where st_no=${st_no}
+	</select>
+	
+	<select id="stadiumInfoAllSelect2" resultType="com.gather.we.dto.StadiumInfoDTO2">
+		select st_no, stadium, location, region, idletime, s_no from stadium_info
+	</select>
+</mapper>

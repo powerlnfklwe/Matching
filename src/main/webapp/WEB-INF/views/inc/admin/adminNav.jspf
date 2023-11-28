@@ -1,0 +1,201 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="path" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>We Gather, Just do it</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<link href="${path}/static/style/style.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/adminNav.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/adminCommon.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/sport/sportList.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/sport/sportNew.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/game/rankgameList.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/game/rankgameNew.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/game/normgameList.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/userList.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/userLog.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/userEdit.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/managerApproveList.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/managerApproveDetail.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/managerList.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/managerDetail.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/managerRecent.css" rel="stylesheet" type="text/css" />
+<link href="${path}/static/style/admin/revenue/revenue.css" rel="stylesheet" type="text/css" />
+
+</head>
+<script>
+	$(function(){
+		// 메뉴 클릭 시 활성화
+		$(".menu").click(function(){
+			$(this).next().toggleClass('active');
+			$(this).find('.menu-title').toggleClass('active');
+			$(this).children('.chevron_down_icon').toggleClass('active');
+		});
+		
+		let url = window.location.pathname; // 현재 페이지의 경로이름
+		// menu-container 클래스 안에 있는 page-link 클래스를 찾고 하나씩 순환
+		$('.menu-container').find('.page-link').each(function(){
+			if($(this).attr('href') == url) { // 선택된 태그의 href의 속성이 현재 url과 같을 경우, 선택된 태그(페이지)와 메뉴 활성화
+				$(this).toggleClass('active'); 
+				$(this).closest('.sub-menu-container').toggleClass('active');
+				$(this).closest('.sub-menu-container').prev().find('.menu-title').toggleClass('active');
+				$(this).closest('.sub-menu-container').prev().children('.chevron_down_icon').toggleClass('active');
+			}
+		});
+	});
+</script>
+<body>
+<!-- 관리자페이지 네비게이션 바 -->
+<nav id="admin-nav">
+	<!-- 사이트 로고 -->
+	<a href="${path}/userHome"><img src="${path}/static/img/admin/logo_white.png" alt="Logo" id="logo"></a>
+	<!-- 네비게이션 메뉴 -->
+	<ul class="menu-container">
+		<!-- 회원관리 메뉴 -->
+		<li class="menu">
+			<div class="menu-info">		
+				<img src="${path}/static/img/admin/hexagon_icon.png" alt="hexagon icon" class="hexagon_icon"/>
+				<span class="menu-title">회원관리</span>
+			</div>
+			<img src="${path}/static/img/admin/chevron_down_icon.png" alt="chevron down icon" class="chevron_down_icon"/>
+		</li>
+		<!-- 회원관리 서브메뉴 -->
+		<li class="sub-menu-container">
+			<ul class="sub-menu">
+				<li class="page">
+					<a href="/admin/userList" class="page-link">		
+						<img src="${path}/static/img/admin/minus_circle_icon.png" alt="minus circle icon" class="minus_circle_icon"/>
+						<span class="menu-title">회원목록</span>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<!-- 매니저관리 메뉴 -->
+		<li class="menu">
+			<div class="menu-info">		
+				<img src="${path}/static/img/admin/hexagon_icon.png" alt="hexagon icon" class="hexagon_icon"/>
+				<span class="menu-title">매니저관리</span>
+			</div>
+			<img src="${path}/static/img/admin/chevron_down_icon.png" alt="chevron down icon" class="chevron_down_icon"/>
+		</li>
+		<!-- 매니저관리 서브메뉴 -->
+		<li class="sub-menu-container">
+			<ul class="sub-menu">
+				<li class="page">
+					<a href="/admin/manager/approvelist" class="page-link">	
+						<img src="${path}/static/img/admin/minus_circle_icon.png" alt="minus circle icon" class="minus_circle_icon"/>
+						<span class="menu-title">매니저승인</span>
+					</a>
+				</li>
+				<li class="page">
+					<a href="/admin/manager/managerlist" class="page-link">	
+						<img src="${path}/static/img/admin/minus_circle_icon.png" alt="minus circle icon" class="minus_circle_icon"/>
+						<span class="menu-title">매니저목록</span>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<!-- 종목관리 메뉴 -->
+		<li class="menu">
+			<div class="menu-info">		
+				<img src="${path}/static/img/admin/hexagon_icon.png" alt="hexagon icon" class="hexagon_icon"/>
+				<span class="menu-title">종목관리</span>
+			</div>
+			<img src="${path}/static/img/admin/chevron_down_icon.png" alt="chevron down icon" class="chevron_down_icon"/>
+		</li>
+		<!-- 종목관리 서브메뉴 -->
+		<li class="sub-menu-container">
+			<ul class="sub-menu">
+				<li class="page">
+					<a href="/admin/sport/sportlist" class="page-link">	
+						<img src="${path}/static/img/admin/minus_circle_icon.png" alt="minus circle icon" class="minus_circle_icon"/>
+						<span class="menu-title">종목목록</span>
+					</a>
+				</li>
+				<li class="page">
+					<a href="/admin/sport/new" class="page-link">	
+						<img src="${path}/static/img/admin/minus_circle_icon.png" alt="minus circle icon" class="minus_circle_icon"/>
+						<span class="menu-title">종목등록</span>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<!-- 경기관리 메뉴 -->
+		<li class="menu">
+			<div class="menu-info">		
+				<img src="${path}/static/img/admin/hexagon_icon.png" alt="hexagon icon" class="hexagon_icon"/>
+				<span class="menu-title">경기관리</span>
+			</div>
+			<img src="${path}/static/img/admin/chevron_down_icon.png" alt="chevron down icon" class="chevron_down_icon"/>
+		</li>
+		<!-- 경기관리 서브메뉴 -->
+		<li class="sub-menu-container">
+			<ul class="sub-menu">
+				<li class="page">
+					<a href="/admin/rankgame/rankgamelist" class="page-link">		
+						<img src="${path}/static/img/admin/minus_circle_icon.png" alt="minus circle icon" class="minus_circle_icon"/>
+						<span class="menu-title">랭크경기목록</span>
+					</a>
+				</li>
+				<li class="page">
+					<a href="/admin/normgame/normgamelist" class="page-link">		
+						<img src="${path}/static/img/admin/minus_circle_icon.png" alt="minus circle icon" class="minus_circle_icon"/>
+						<span class="menu-title">일반경기목록</span>
+					</a>
+				</li>
+				<li class="page">
+					<a href="/admin/game/new" class="page-link">		
+						<img src="${path}/static/img/admin/minus_circle_icon.png" alt="minus circle icon" class="minus_circle_icon"/>
+						<span class="menu-title">경기등록</span>
+					</a>
+				</li>
+			</ul>
+		</li>
+		<!-- 수입/지출관리 메뉴 -->
+		<li class="menu">
+			<div class="menu-info">		
+				<img src="${path}/static/img/admin/hexagon_icon.png" alt="hexagon icon" class="hexagon_icon"/>
+				<span class="menu-title">수입/지출관리</span>
+			</div>
+			<img src="${path}/static/img/admin/chevron_down_icon.png" alt="chevron down icon" class="chevron_down_icon"/>
+		</li>
+		<!-- 수입/지출관리 서브메뉴 -->
+		<li class="sub-menu-container">
+			<ul class="sub-menu">
+				<li class="page">
+					<a href="/admin/revenue" class="page-link">
+						<img src="${path}/static/img/admin/minus_circle_icon.png" alt="minus circle icon" class="minus_circle_icon"/>
+						<span class="menu-title">수입내역</span>
+					</a>
+				</li>
+				<li class="page">
+					<a href="/admin/expense" class="page-link">	
+						<img src="${path}/static/img/admin/minus_circle_icon.png" alt="minusn circle icon" class="minus_circle_icon"/>
+						<span class="menu-title">지출내역</span>
+					</a>
+				</li>
+				<li class="page">
+					<a href="/admin/managerfee" class="page-link">
+						<img src="${path}/static/img/admin/minus_circle_icon.png" alt="minus_circle_icon" class="minus_circle_icon"/>
+						<span class="menu-title">매니저비</span>
+					</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	
+	<!-- 관리자 정보 -->
+	<div class="admin-info-container">
+		<div class="admin-info">
+			<img src="${path}/static/img/admin/user_icon.png" alt="user icon" class="user_icon"/>
+			<span class="adminid">관리자</span>
+		</div>
+		<a href="${path}/logout">
+			<img src="${path}/static/img/admin/logout_icon.png" alt="logout icon" class="logout_icon"/>
+		</a>
+	</div>
+</nav>

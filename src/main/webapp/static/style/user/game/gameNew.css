@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+.game_new_wrap.left {
+	width: 35%;
+	margin: 0 20px;
+}
+
+.game_new_wrap.left .sport_img {
+	width: 100%;
+  margin-bottom: 30px;
+	border-radius: 40px;
+} 
+
+.game_new_wrap.left .norm_game_new_select li{
+	font-size: var(--font-micro);
+	font-weight: var(--weight-bold);
+	margin: 30px 0;
+	line-height: 1.5em;
+}
+
+.gamenew_info {
+	text-align: center;
+	margin-bottom: 24px;
+	padding: 10px 0;
+	background: var(--color-white);
+	border-radius: 20px;
+	line-height: 2em;
+	border: 2px solid var(--color-norm-green);
+}
+
+.gamenew_guide {
+	text-align: center;
+	margin-bottom: 24px;
+	padding: 10px 0;
+	background: var(--color-white);
+	border-radius: 20px;
+	line-height: 2em;
+	color: black;
+	border: 2px solid var(--color-norm-green);
+	font-size: var(--font-regular);
+}
+
+.gamenew_detail_main {
+	font-weight: var(--weight-bold);
+	font-size: var(--font-small);
+}
+
+.gamenew_detail_sub {
+	font-weight: var(--weight-bold);
+}
+
+.gamenew_write {
+	margin: 30px 0;
+	text-align: center;
+	line-heigth: 2em;
+}
+
+.btn_apply_norm_new {
+	width: 75%;
+    	height: 70px;
+    	color: var(--color-white);
+    	font-size: var(--font-small);
+    	background-color: var(--color-norm-green);
+    	font-weight: var(--weight-bold);
+    	border: none;
+}

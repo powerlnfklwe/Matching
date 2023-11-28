@@ -1,0 +1,104 @@
+@charset "UTF-8";
+
+.login_container{
+	width:1200px;
+	height:500px;
+	margin:0 auto;
+	margin-top: 100px;
+	text-align:center;	
+}
+#logFrm .logFrm{
+	float: left;
+}
+#logFrm{
+	text-align: center;
+    /* position: relative; */
+    left: 25%;
+    /* margin-top: 50px; */
+    margin: 50px 360px;
+    width: 600px;
+    font-size: 20px;
+    font-weight: 600;
+}
+#logFrm .logFrm:nth-child(2n+1){
+	width: 120px;
+	line-height: 60px;
+}
+#logFrm .logFrm:nth-child(2n){
+	width:  400px;
+	
+}
+#log_id{
+	float: left;
+	width:300px;
+	height:45px;
+	text-align:center;
+	margin-top: 10px;
+    margin-bottom: 20px;
+    border: none;
+    border-radius: 10px;
+    font-size: 19px;
+    background: #EBF0FD;
+}
+#log_password{
+	width:300px;
+	height:45px;
+	text-align:center;
+	margin-top: 10px;
+    margin-bottom: 45px;
+    border: none;
+    border-radius: 10px;
+    margin-left: -100px;
+    font-size: 19px;
+    background: #EBF0FD;
+}
+#log_LOGIN{
+	float: left;
+    width: 180px;
+    background: #324DAA;
+    height: 50px;
+    line-height: 45px;
+    margin-left: 30px;
+    border: none;
+    border-radius: 30px;
+    
+}
+#log_LOGIN>input{
+	width: 100%;
+	background: none;
+	border: none;
+	color: white;
+}
+#log_register{
+    float: left;
+    width: 180px;
+    background: ghostwhite;
+    height: 50px;
+    line-height: 44px;
+    margin-left: 33px;
+    border-radius: 30px;
+    border: 2px solid #324DAA;
+}
+#logFrm #log_register a{
+	width: 100%;
+	display: inline-block;
+	color: #324DAA;
+    font-weight: 600;
+}
+
+#log_register a:link, 
+#log_register a:visited, 
+#log_register a:hover{
+	text-decoration : none;
+	color:#000;
+}
+
+/* 
+#log_img{
+	position:relative;
+	top:80%;
+	right:25%;
+	width:600px;
+	height:400px;
+} */
+

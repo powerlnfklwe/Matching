@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.ManagerInfoDAO">
+
+<!--  	<select id="getAllManagerInfo" resultType="com.gather.we.dto.ManagerInfoDTO">
+  
+    SELECT stadium_info.stadium, stadium_info.location, rank_game.gametime, rank_game.g_status, rank_game.managerid, rank_game.manager
+    FROM rank_game  
+    JOIN stadium_info ON stadium_info.st_no = rank_game.st_no
+   
+</select> -->
+
+
+ 
+  <select id="getTotalRecordByManagerid" resultType="int">
+    
+     SELECT COUNT(rank_game.st_no)  
+     FROM rank_game 
+     JOIN stadium_info ON stadium_info.st_no = rank_game.st_no 
+     WHERE rank_game.managerid = #{managerid}
+     And rank_game.gametime <![CDATA[>]]> sysdate
+    
+</select>
+
+<select id="getTotalRecordByManageridInfo" resultType="int">
+    
+     SELECT COUNT(rank_game.st_no)  
+     FROM rank_game 
+     JOIN stadium_info ON stadium_info.st_no = rank_game.st_no 
+     WHERE rank_game.managerid = #{managerid}
+     And rank_game.gametime <![CDATA[<]]> sysdate
+    
+</select>
+
+
+
+<select id="getAllManagerPast" resultType="com.gather.we.dto.ManagerInfoDTO">
+		 
+	 select * from 
+ 			(select * from 
+ 				( 
+		SELECT rank_game.no, rank_game.st_no, stadium_info.stadium, stadium_info.location, rank_game.gametime, rank_game.g_status, rank_game.managerid	, rank_game.manager
+		FROM rank_game  
+		JOIN stadium_info ON stadium_info.st_no = rank_game.st_no
+		WHERE rank_game.managerid = #{managerid} 
+	<!--  	AND rank_game.no = ${no}-->
+		AND gametime <![CDATA[<]]> sysdate
+				
+		order by rank_game.gametime desc
+				 ) <![CDATA[ 
+ 				 WHERE rownum<=${onePageRecord*nowPage} order by gametime asc 
+ 				]]>
+ 				 )
+ 		<choose>
+		  <when test="nowPage!=totalPage"> 		
+ 	   		 	<![CDATA[ 
+ 			 	where rownum<=${onePageRecord} order by gametime desc
+ 			 	]]>
+ 		 
+ 		  </when>
+ 		  <when test="nowPage==totalPage">	
+ 			   <![CDATA[ 
+ 		 		where rownum<=${lastPageRecord} order by gametime desc
+ 		 		]]>
+ 	  	  </when>
+ 		</choose>  
+	</select>
+
+	<select id="pageSelect" resultType="com.gather.we.dto.ManagerInfoDTO">
+       select * from 
+ 			(select * from 
+ 				( 
+			    select rank_game.s_no, rank_game.no, stadium_info.stadium, stadium_info.location, rank_game.gametime, rank_game.g_status, 
+			    rank_game.managerid, rank_game.manager
+			    from rank_game
+			    join stadium_info on stadium_info.st_no = rank_game.st_no 
+			    WHERE rank_game.managerid = #{managerid}
+			    And rank_game.gametime <![CDATA[>]]> sysdate
+			 	order by gametime desc		
+ 			
+	 			 ) <![CDATA[
+ 				 where rownum<=${onePageRecord*nowPage} order by gametime asc
+ 				 ]]>
+ 				 )
+ 		<choose>
+		  <when test="nowPage!=totalPage"> 		
+ 	   		 	<![CDATA[
+ 			 	where rownum<=${onePageRecord} order by gametime desc
+ 			 	]]>
+ 		 
+ 		  </when>
+ 		  <when test="nowPage==totalPage">	
+ 			   <![CDATA[
+ 		 		where rownum<=${lastPageRecord} order by gametime desc
+ 		 		]]>
+ 	  	  </when>
+ 		</choose>  
+</select>
+
+
+
+
+	
+<select id="getAllEntry" resultType="com.gather.we.dto.ManagerInfoDTO">
+      SELECT rp.no, u.userid, u.username, u.tel, u.gender, rp.rank
+		FROM r_participate rp
+			INNER JOIN users u ON rp.userid = u.userid
+			INNER JOIN rank_game rg ON rp.no = rg.no
+		WHERE rg.no = ${no}
+  </select>
+
+
+    <select id="getAllManagerInput" resultType="com.gather.we.dto.ManagerInfoDTO">
+        SELECT  rp.no, u.username, rp.rank, u.userid
+       	 FROM r_participate rp
+        	INNER JOIN users u ON rp.userid = u.userid
+        	INNER JOIN rank_game rg ON rp.no = rg.no
+        WHERE rg.no = ${no}
+       
+        	
+    </select>
+	<!--  SELECT rp.userid, rp.rank, rp.no, u.username  And rg.gametime <![CDATA[<]]> sysdate-->
+	
+<delete id="deleteMSettlement">
+    DELETE FROM m_settlement
+    WHERE managerid = #{managerid} 
+    AND no = ${no}
+</delete>
+	
+<update id="updateRankGame">
+    UPDATE rank_game
+    SET managerid = null, manager=0
+    WHERE managerid = #{managerid}
+    AND no = ${no}
+</update>
+  	
+	
+	
+	
+	
+	
+   <update id="updateRank">
+ 	 UPDATE r_participate
+  	SET rank = ${rank}
+  	WHERE userid = #{userid}
+  	AND no= ${no} 
+</update>
+
+	
+ </mapper>
+
+ 
+ 
+ 
+ 
+ 

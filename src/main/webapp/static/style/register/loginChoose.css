@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+.loginChoose_container{
+	width:1200px;
+	height: 500px;
+	margin:0 auto;
+	margin-top: 50px;
+	text-align:center;
+}
+.user_login_box{
+	position :absolute;
+	top : 35%;
+	left:30%;
+	width:300px;
+	height:300px;
+	padding:100px 0;
+	border-radius:5%;
+	float:left;
+	background-color:#ddd;
+	margin : 5px;
+}	
+.manager_login_box{
+	position :absolute;
+	top : 35%;
+	right:30%;
+	width:300px;
+	height:300px;
+	padding:100px 0;
+	border-radius:5%;
+	float:left;
+	background-color:#ddd;
+	margin : 5px;	
+}	

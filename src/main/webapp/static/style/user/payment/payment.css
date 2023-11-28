@@ -1,0 +1,128 @@
+@charset "UTF-8";
+
+/* 결제 페이지 */
+#payment_container {
+	width: 1100px;
+	margin: 75px auto;
+}
+#payment_container .payment_title {
+	text-align: center;
+	font-weight: var(--weight-bold);
+	margin-bottom: 60px;
+}
+
+#payment_container .payment_info_wrap {
+	display: flex;
+	justify-content: space-between;
+}
+/*랭크게임 section*/
+#payment_container .payment_section.rank {       
+	background-color: var(--color-rank-light-blue);
+	/* border: 1px solid var(--color-gray); */
+	padding: 28px;
+	border-radius: 15px;
+}
+/*일반게임 section*/
+#payment_container .payment_section.normal{		
+	background-color: #F4F8F4;
+	/* border: 1px solid var(--color-gray); */
+	padding: 28px;
+	border-radius: 15px;
+}
+
+#payment_container .payment_section.left {
+	width: 600px;
+	height: 535px;
+}
+
+#payment_container .payment_section.right {
+	width: 470px;
+	height: 250px;
+	margin-bottom: 35px
+}
+
+#payment_container .payment_section.right:first-of-type {
+	position: relative;
+}
+
+#payment_container .payment_section .title {
+	font-size: var(--font-regular);
+	font-weight: var(--weight-bold);
+	margin-bottom: 20px;
+}
+
+#payment_container .payment_info {
+	font-size: var(--font-small);
+	margin-bottom: 14px;
+}
+
+#payment_container .payment_label {
+	font-weight: var(--weight-bold);
+}
+
+#payment_container .payment_info .stadium_location {
+	width: 100px;
+	margin-left: 94px;
+}
+
+#payment_container .payment_info .amount {
+	margin-left: 190px;
+}
+
+/* 총 결제금액 - 랭크경기 */
+#payment_container .payment_info .total_amount.rank {
+	font-weight: var(--weight-bold);
+	color: var(--color-blue);
+	margin-left: 190px;
+}
+
+/* 총 결제금액 - 일반경기 */
+#payment_container .payment_info .total_amount.normal {
+	font-weight: var(--weight-bold);
+	color: var(--color-manager-middle-green);
+	margin-left: 190px;
+}
+
+#payment_container .payment_info.total_amount:before { /* 총 결제금액 위에 구분선 추가 */
+	content: '';
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 2px;
+	margin-top: 50px;
+	margin-bottom: 14px;
+	background-color: var(--color-gray);
+}
+
+/* 참가자 정보 수정 버튼 */
+#payment_container .payment_section .btn_modify {
+	position: absolute;
+	right: 36px;
+	bottom: 90px;
+	font-size: var(--font-micro);
+	font-weight: var(--weight-bold);
+	background-color: var(--color-gray);
+	padding: 8px 12px;
+	border-radius: 5px;
+}
+
+/* 결제하기 버튼 */
+#payment_container .btn-pay {
+	width: 450px;
+	font-size: var(--font-small);
+	font-weight: var(--weight-bold);
+	color: var(--color-white);
+	padding: 18px 0;
+}
+
+/* 결제하기 버튼 - 랭크경기 */
+#payment_container .btn-pay.rank {
+	background-color: var(--color-blue);
+	border-radius: 35px;
+}
+
+/* 결제하기 버튼 - 일반경기 */
+#payment_container .btn-pay.normal {
+	background-color: var(--color-manager-middle-green);
+	border-radius: 35px;
+}

@@ -1,0 +1,162 @@
+@charset "UTF-8";
+/* .manager_container{
+	width:1200px;
+	height:800px;
+	margin: 0 auto;
+}
+#manager_img{
+	width:500px;
+	height:650px;
+	position:relative;
+	top:55%;
+	left: 15%;
+	
+	
+}
+#mangerid{
+	width:370px; 
+	height:40px;
+}
+#idCheck{
+	height:40px;
+}
+#password{
+	width:500px;
+	height:40px;
+}
+
+#m_name{
+	width:500px;
+	height:40px;
+}
+#tel1{
+	width:50px;
+	height:40px;
+}
+#tel2, #tel3{
+	width:220px; height:40px;
+}
+#s_no{
+	width:100px; height:40px;
+}
+#email, #address, #m_account, #submit{
+	width:500px; height:40px;
+}
+form{
+	float:left;
+} */
+
+/*----- 매니저 회원가입 스타일시트 ----*/
+.manager_container{
+	width:1200px;
+	height:1000px;
+	margin:0 auto;
+	margin-top: 45px;
+}
+
+#registerMan_img{
+	width:600px;
+	height:500px;
+	position:relative;
+	top:19%;
+	left: 10%;
+}
+#idCheck{
+    height: 45px;
+    border-radius: 12px;
+    background: #C2B9BD;
+    margin-left: 4px;
+
+}
+#registerManForm{
+	float:left;
+	font-size: 18px;
+}
+#registerManForm>#registerMan-ul .registerMan-li{
+	margin-bottom: 3px;
+    background: #F1F5F5;
+    height: 45px;
+    border-radius: 15px;
+}
+#registerMan-gender{
+	padding-top: 7px;
+	padding-left: 10px;
+}
+
+#registerMan-ul>li>#managerid{
+	line-height: 40px;
+    width: 350px;
+    height: 40px;
+    margin-top: 2px;
+    border: none;
+    background: #F1F5F5;
+    padding-left: 10px;
+    border-radius: 15px;
+}
+
+#registerMan-ul>li>#managerpwd, 
+#registerMan-ul>li>#m_name, 
+#registerMan-ul>li>#email, 
+#registerMan-ul>li>#address, 
+#registerMan-ul>li>#mbti,
+#registerMan-ul>li>#m_account{
+	width: 500px;
+    height: 40px;
+    background: #F1F5F5; /* #F0F1F1; */
+    line-height: 40px;
+    margin-top: 2px;
+    border: none;
+    padding-left: 10px;
+    border-radius: 15px;
+}
+.registerMan-li #tel1{
+	width: 113px;
+    height: 37px;
+    margin-left: 10px;
+    margin-top: 2px;
+    background: white;
+    border: none;
+    border-radius: 15px;
+    text-align: center;
+}
+.registerMan-li #tel2, 
+.registerMan-li #tel3{
+	width: 150px;
+    height: 37px;
+    background: #F1F5F5;
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+}
+.registerMan-li>#s_no{
+	border: 1px solid #ADA4A8;
+	border-radius: 10px;
+    width: 500px;
+    height: 45px;
+    text-align: center;
+    margin-top: 0px;
+    background: #F1F5F5;
+}
+
+#registerMan-ul>li>#submit{
+    width: 180px;
+    background: #716051; /* #534D46; */
+    height: 50px;
+    line-height: 45px;
+    margin-left: 30px;
+    border: none;
+    border-radius: 10px;
+    color: white;
+}
+#registerMan-ul>.registerMan-submit{
+	text-align: right;
+}
+#manager_img{
+	float: left;
+    position: absolute;
+    width: 580px;
+    height: 700px;
+    margin-left: 55px;
+    margin-top: 55px;
+    border-radius:10px;
+}

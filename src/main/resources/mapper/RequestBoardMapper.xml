@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.RequestBoardDAO">
+	<!-- 게시글 목록 -->
+	<select id="getList" resultType="com.gather.we.dto.RequestBoardDTO">
+		select no,userid,title,content,writedate from request where no<![CDATA[>]]>0 ORDER BY no DESC
+	</select>
+	
+	<!-- 게시글 목록(페이징) -->
+	<select id="getListPaging" resultType="com.gather.we.dto.RequestBoardDTO">
+		  SELECT no, userid, title, content, writedate
+		  FROM (
+		    SELECT rownum AS rn, no, userid, title, content, writedate
+		    FROM (
+		      SELECT no, userid, title, content, writedate
+		      FROM request
+		      WHERE 1=1
+		      <if test="keyword != null and keyword != ''">
+		      	<include refid="criteria"></include>
+		      </if>
+		      ORDER BY no DESC
+		    )
+		    WHERE rownum <![CDATA[<=]]> #{pageNum} * #{amount}
+		  )
+		  WHERE rn <![CDATA[>]]> (#{pageNum}-1) * #{amount}
+		  ORDER BY no DESC
+	</select>
+	
+	<!-- 게시글 등록 -->
+	<insert id="enroll">
+		INSERT INTO request(no,userid,title,content)
+		VALUES(request_sq.nextval, #{userid}, #{title}, #{content})
+	</insert>
+	
+	<!-- 게시글 조회 -->
+	<select id="getPage" resultType="com.gather.we.dto.RequestBoardDTO">
+		SELECT * FROM request WHERE no = #{no}
+	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="modify">
+		UPDATE request SET title=#{title}, content=#{content} WHERE no=#{no}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="delete">
+		DELETE FROM request WHERE no = #{no}
+	</delete>
+	
+	<!-- 게시글 총 개수 -->
+	<select id="getTotal" resultType="int">
+		SELECT count(*) FROM request
+			<if test="keyword != null and keyword != ''">
+		    	WHERE 1=1 <include refid="criteria"></include>
+			</if>
+			ORDER BY no DESC
+	</select>
+	
+	<!-- 검색 조건문 -->
+    <sql id="criteria">
+        <trim prefix="AND (" suffix=")" prefixOverrides="OR">
+            <foreach collection="typeArr" item="type">
+                <trim prefix="OR">
+                    <choose>
+                        <when test="type == 'T'.toString()">
+                            title like '%'||#{keyword}||'%' 
+                        </when>
+                        <when test="type == 'C'.toString()">
+                            content like '%'||#{keyword}||'%' 
+                        </when>
+                        <when test="type == 'W'.toString()">
+                            userid like '%'||#{keyword}||'%' 
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+    </sql>
+</mapper>

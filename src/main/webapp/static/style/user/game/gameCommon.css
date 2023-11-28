@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+/* 경기페이지 공통 스타일*/
+
+/* 경기페이지 내용 컨테이너 */
+.game_container {
+	width: 1200px;
+	margin: 40px auto;
+	min-height: 1200px;
+}
+
+/* 경기 유형 설명 컨테이너*/
+.game_type_container.rank { /* 랭크 */
+	display: flex;
+	width: 1200px;
+	margin: 0 auto 40px;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 20px 0;
+	/*background-color: var(--color-blue);*/
+	border-radius: 20px; 	
+}
+
+.game_type_container.norm { /* 일반 */
+	display: flex;
+	width: 1200px;
+	margin: 0 auto 40px;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 20px 0;
+	/*background-color: var(--color-norm-green);*/
+	border-radius: 20px;
+}
+
+/* 경기 유형 설명*/
+.game_type_desc {
+	text-align: center;
+	font-size: 28px;
+	font-weight: var(--weight-bold);
+	color: var(--color-black);
+}
+.game_type_desc>img{
+	width:35px;
+	height:30px;
+}
+.normgame_type_desc>img{
+	width:35px;
+	height:30px;
+}
+.normgame_type_desc {
+	text-align: center;
+	font-size: 28px;
+	font-weight: var(--weight-bold);
+	color: var(--color-black);
+}

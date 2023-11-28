@@ -1,0 +1,180 @@
+@charset "UTF-8";
+
+#recommend_nav .recommend_user_mbti {
+	display: none;
+	justify-content: space-between;
+	width: 1200px;
+	font-size: var(--font-micro);
+	font-weight: var(--weight-bold);
+	color: var(--color-black);
+	/* background-color: var(--color-board-blue); */
+	border-radius: 12px;
+	margin: 0 auto;
+	line-height: 35px;
+	padding: 12px 0;
+}
+
+#recommend_nav .recommend_user_mbti.non_login.active {
+	display: flex;
+	flex-direction: column;
+	padding: 20px 100px;
+	border-bottom: 2px solid var(--color-lighter-pink);
+	border-radius: 0;
+	/* margin-top: 30px; */
+	
+}
+
+#recommend_nav .recommend_user_mbti.login.active {
+	display: flex;
+	padding: 20px 100px;
+	border-bottom: 2px solid var(--color-lighter-pink);
+	border-radius: 0;
+	margin-top: 30px;
+}
+
+#recommend_nav .recommend_user_mbti.login li:nth-of-type(1) {
+	font-size: var(--font-small);
+}
+
+#recommend_nav .recommend_user_mbti.login li:nth-of-type(3) {
+	background-color: var(--color-lightest-blue);
+	padding: 0 14px;
+	border-radius: 20px;
+	color: var(--color-white);
+}
+
+#recommend_container .recommend_content_mbti {
+	display: none;
+	width: 1200px;
+	flex-direction: column;
+	align-items: center;
+	margin: 0 auto;
+}
+
+#recommend_container .recommend_content_mbti.login.active {
+	display: flex;
+}
+
+#recommend_container .recommend_content_mbti.non_login.active {
+	display: flex;
+}
+
+#recommend_nav .mbti_select {
+	margin-left: 8px;
+    border-radius: 4px;
+    width: 95px;
+    height: 35px;
+    text-align: center;
+}
+
+/* MBTI 선택 결과 - 비로그인 시 */
+
+#recommend_container .mbti_result {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #FCFBFB;
+	border-radius: 12px;
+	/* border: 1px solid var(--color-gray); */
+	padding: 40px 0;
+	margin-bottom: 60px;
+	box-shadow: 0 0 15px #E4CECE;
+}
+
+#recommend_container .mbti_result .mbti {
+	font-size: var(--font-medium);
+	font-weight: var(--weight-bold);
+	margin-bottom: 30px;
+}
+
+#recommend_container .mbti_result .message {
+	font-size: var(--font-micro);
+	font-weight: var(--weight-bold);
+	margin-bottom: 30px;
+}
+
+#recommend_container .mbti_result .message:after { /* 구분선 추가 */
+	content: '';
+	display: block;
+	position: relative;
+	left: 265px;
+	width: 20px;
+	height: 2px;
+	margin-top: 30px;
+	background-color: var(--color-gray);
+}
+
+#recommend_container .mbti_result .sport_statistics {
+	font-size: var(--font-micro);
+	margin-bottom: 20px;
+}
+
+#recommend_container .mbti_result .sport_statistics span {
+	margin-right: 12px;
+	padding: 4px 12px;
+}
+
+#recommend_container .mbti_result .sport_statistics.top {
+	font-weight: var(--weight-bold);
+	font-size: var(--font-small);
+}
+
+#recommend_container .mbti_result .sport_statistics.top span:first-child {
+	color: var(--color-white);
+	background-color: var(--color-lightest-blue);
+	border-radius: 20px;
+}
+
+#recommend_container .login-message {
+	font-size: var(--font-small);
+	font-weight: var(--weight-bold);
+}
+
+#recommend_container .login-message a {
+	color: var(--color-pink);
+}
+
+/* MBTI 목록 - 로그인 시 */
+
+#recommend_container .mbti_list {
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #F9F4F4;
+    border-radius: 12px;
+    /* border: 1px solid var(--color-gray); */
+    padding: 40px;
+    padding-bottom: 0;
+    box-shadow: 0 0 15px #E4CECE;
+}
+
+#recommend_container .mbti_list .mbti_item {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 240px;
+	height: 240px;
+	background-color: var(--color-white);
+	border-radius: 12px;
+	margin-bottom: 40px;
+	border: 1px solid var(--color-light-gray);
+}
+
+#recommend_container .mbti_list .mbti_item.active {
+	border: 8px solid #F48A89;
+	box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.3);
+	-moz-box-shadow: 0px 4px 6px 0px rgba(0,0,0,0.3);
+}
+
+#recommend_container .mbti_list .mbti_type {
+	font-size: var(--font-semi-medium);
+	font-weight: var(--weight-bold);
+	margin-bottom: 16px;
+}
+
+#recommend_container .mbti_list .sport_statistics {
+	margin-bottom: 4px;
+}

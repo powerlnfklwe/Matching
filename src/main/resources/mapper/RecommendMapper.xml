@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.RecommendDAO">
+ 	<select id="mbtiStatisticsSelect" resultType="com.gather.we.dto.RecommendDTO">
+		select mbti, sportname, sport_ratio
+		from (
+		    select u.mbti, s.sportname, round(RATIO_TO_REPORT(count(s.sportname)) over()*100) || '%' as sport_ratio
+		    from (
+		        select userid, s_no
+		        from r_participate rp
+		        inner join rank_game r on rp.no=r.no
+		        union all
+		        select userid, s_no
+		        from n_participate np
+		        inner join norm_game n on np.no=n.no
+		        ) game
+		    inner join users u on u.userid=game.userid
+		    inner join sport s on s.s_no=game.s_no
+		    where u.mbti=#{mbtiType}
+		    group by u.mbti, s.sportname
+		    order by sport_ratio desc
+		    )
+		where rownum <![CDATA[<=]]> 3
+	</select>
+	
+	 <select id="genderStatisticsSelect" resultType="com.gather.we.dto.RecommendDTO">
+		select u.gender, s.sportname, round(RATIO_TO_REPORT(count(s.sportname)) over()*100) as sport_ratio
+		from (
+		    select userid, s_no
+		    from r_participate rp
+		    inner join rank_game r on rp.no=r.no
+		    union all
+		    select userid, s_no
+		    from n_participate np
+		    inner join norm_game n on np.no=n.no
+		    ) game
+		inner join users u on u.userid=game.userid
+		inner join sport s on s.s_no=game.s_no
+		where u.gender=#{gender}
+		group by u.gender, s.sportname
+		order by sport_ratio desc
+	</select>
+	
+	<select id="ageStatisticsSelect" resultType="com.gather.we.dto.RecommendDTO">
+		select age_group, sportname, round(RATIO_TO_REPORT(count(sportname)) over()*100, 2) as sport_ratio
+		from (select case when <![CDATA[age >= 10 and age < 20]]>  then '10대'
+		                  when <![CDATA[age >= 20 and age < 30]]>  then '20대'
+		                  when <![CDATA[age >= 30 and age < 40]]>  then '30대'
+		                  when <![CDATA[age >= 40 and age < 50]]>  then '40대'
+		                  when <![CDATA[age >= 50 and age < 60]]>  then '50대'
+		                  when <![CDATA[age >= 60]]>               then '60대 이상'
+		            end age_group,  sportname
+		        from (select u.age, s.sportname
+		                from (
+		                    select userid, s_no
+		                    from r_participate rp
+		                    inner join rank_game r on rp.no=r.no
+		                    union all
+		                    select userid, s_no
+		                    from n_participate np
+		                    inner join norm_game n on np.no=n.no
+		                ) game
+		            inner join users u on u.userid=game.userid
+		            inner join sport s on s.s_no=game.s_no
+		            )
+		    )
+		where age_group=#{age}
+		group by age_group, sportname
+		order by age_group, sportname
+	</select>
+	
+	<select id="ageTopStatisticsSelect" resultType="com.gather.we.dto.RecommendDTO">
+		select age_group, sportname, sport_ratio
+		from (select age_group, sportname, round(RATIO_TO_REPORT(count(sportname)) over()*100, 2) as sport_ratio
+			from (select case when <![CDATA[age >= 10 and age < 20]]>  then '10대'
+			                  when <![CDATA[age >= 20 and age < 30]]>  then '20대'
+			                  when <![CDATA[age >= 30 and age < 40]]>  then '30대'
+			                  when <![CDATA[age >= 40 and age < 50]]>  then '40대'
+			                  when <![CDATA[age >= 50 and age < 60]]>  then '50대'
+			                  when <![CDATA[age >= 60]]>               then '60대 이상'
+			            end age_group,  sportname
+			        from (select u.age, s.sportname
+			                from (
+			                    select userid, s_no
+			                    from r_participate rp
+			                    inner join rank_game r on rp.no=r.no
+			                    union all
+			                    select userid, s_no
+			                    from n_participate np
+			                    inner join norm_game n on np.no=n.no
+			                ) game
+			            inner join users u on u.userid=game.userid
+			            inner join sport s on s.s_no=game.s_no
+			            )
+			    )
+			where age_group=#{age}
+			group by age_group, sportname
+			order by sport_ratio desc
+		)
+		where rownum = 1
+	</select>
+</mapper>

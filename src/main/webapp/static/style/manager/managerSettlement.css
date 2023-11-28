@@ -1,0 +1,37 @@
+@charset "UTF-8";
+		/* 정산내역테이블 */
+		#settlement-container {margin-left:260px;flex:auto;padding:76px 78px;height:100vh;overflow-y:auto;}
+		#settlement-container h1 {font-size:32px;margin: 0 0 57px 0;}
+		#settlement-container table {border-collapse:separate;border-spacing:0;width:100%;background-color:#F8F9FB;}
+		#settlement-container th, td {padding:6px 15px;}
+		.settlement-sum {font-size:20px;margin-bottom:20px;border:1px solid #c6c9cc;border-radius:6px;}
+		.settlement-table th {font-size:20px;background:#656363;color:#fff;text-align:center;}
+		.settlement-table td {font-size:20px;border-right:1px solid #c6c9cc;border-bottom:1px solid #c6c9cc;}
+		#td-num, #td-dstatus, #td-amount, #td-time{text-align:center;}
+		#settlement-container td:first-child {border-left:1px solid #c6c9cc;}
+		#settlement-container tr:first-child th:first-child {border-top-left-radius:6px;}
+		#settlement-container tr:first-child th:last-child {border-top-right-radius:6px;}
+		#settlement-container tr:last-child td:first-child {border-bottom-left-radius:6px;}
+		#settlement-container tr:last-child td:last-child {border-bottom-right-radius:6px;}
+		
+		/* 페이지네이션 */
+		.pagination-container{margin-top:13px;}
+		.pagination-container ul {list-style:none;display:flex;justify-content:center;align-items:center;}
+		.pagination li {margin:0 5px;border:1px solid #ccc;padding:5px 10px;}
+		.pagination li.active {background-color:gray;border-color:#F8F9FB;}
+		.pagination li:hover {background-color:#F8F9FB;}
+		.pagination li a {color:black;}
+		.pagination li.active a {color:white;}
+		.pagination li:hover a {color:black;font-weight:bold;text-decoration:underline;}	
+		
+		/*검색,필터*/
+		.search_area form {display:flex;flex-direction:row;align-items:center;height:50px;}		
+		.search_area form * {font-size:20px; margin:5px 20px 5px 0px;}
+		.search_wrap {margin-bottom:10px;}
+		#search-word, #submit-btn, #search-date, #sort-by {height:40px;background-color:#F8F9FB;border:1px solid #c6c9cc;border-radius:6px;}
+		#search-word {width:500px;}
+		#submit-btn {width:60px;font-size:13px;font-family:'Noto Sans KR',sans-serif;}
+		#search-date {width:200px;margin-left: 115px;}
+		#check-status {width:15px;height:15px;}
+		#sort-by {display:flex;align-items:center;margin-right: 0px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:3px;}
+		#sort-by span {font-size:20px;font-family:'Noto Sans KR', sans-serif;margin-left:7px;color:gray;}

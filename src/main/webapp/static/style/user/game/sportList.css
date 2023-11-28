@@ -1,0 +1,80 @@
+@charset "UTF-8";
+
+/* 스포츠 종목 */
+.sport_list {
+	display: flex;
+	flex-wrap: wrap;
+	width: 1200px;
+	margin: 10px auto; /* 0 auto;*/
+}
+
+.sport_item {
+	position: relative;
+	width: 360px;
+	height: 360px;
+	margin: 20px;
+	color: var(--color-white);
+	cursor: pointer;
+}
+
+.sport_item img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.sport_tag {
+	background-color: var(--color-blue);
+	padding: 12px 24px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	font-size: var(--font-micro);
+}
+
+.norm_game_tag {
+	background-color: var(--color-norm-green);
+}
+
+.sport_desc_container { /* 종목 설명 - opacity를 0으로 설정하여 화면에 보이지 않게 함 */
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: var(--color-black);
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: all 0.2s ease-in;
+}
+
+.sport_item:hover .sport_desc_container { /* 종목 설명 - 마우스 hover시 opacity를 0.8로 설정하여 화면에 보이게 함*/
+	opacity: 0.8;
+}
+
+.sport_desc_container a {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	justify-content: center;
+	color: var(--color-white);
+	padding: 0 12px;
+}
+
+.sport_name {
+	font-size: var(--font-small);
+}
+
+.sport_name:after { /* 스포츠 이름과 설명 사이의 구분선 추가 */
+	content: '';
+	display: block;
+	position: relative;
+	left: 50%;
+	width: 25px;
+	height: 2px;
+	margin-left: -12px;
+	margin-top: 14px;
+	margin-bottom: 20px;
+	background-color: var(--color-white);
+}

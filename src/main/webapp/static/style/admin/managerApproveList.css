@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+#container-allManager {
+	display: flex;
+	flex-direction: column;
+}
+
+#container-allManager table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+	background-color: var(--color-white);
+	border-radius: 20px;
+}
+
+#container-allManager th, 
+#container-allManager td {
+	padding: 14px;
+	border-bottom: 2px solid #f3f3f3;
+}
+
+#container-allManager a:link, #container-allManager a:focus, #container-allManager a:visited, #container-allManager a:hover {
+	color: var(--color-black);
+}
+
+#container-allManager th:nth-of-type(1) {
+	width: 8%;
+	border-radius: 20px 0 0 0;
+}
+
+#container-allManager th:nth-of-type(2) {
+	width: 10%;
+}
+
+#container-allManager th:nth-of-type(3) {
+	width: 15%;
+}
+
+#container-allManager th:nth-of-type(4) {
+	width: 12%;
+}
+
+#container-allManager th:nth-of-type(5) {
+	width: 25%;
+}
+
+#container-allManager th:nth-of-type(6) {
+	width: 7%;
+}
+
+#container-allManager th:nth-of-type(7) {
+	width: 15%;
+}
+
+#container-allManager th:nth-of-type(8) {
+	width: 8%;
+	border-radius: 0 20px 0 0;
+}
+
+#container-allManager th {
+	background: #d1d9e2;
+	font-weight: var(--weight-bold);
+}
+
+#container-allManager .pagingDiv {
+	display: flex;
+	justify-content: center;
+}
+
+#container-allManager .pagingDiv li{
+	float:left;
+	display: flex;
+	padding: 3px 5px;
+	margin: 0 12px;
+	font-size: var(--font-micro);
+}
+
+#container-allManager .pagingDiv a:link,
+#container-allManager .pagingDiv a:hover,
+#container-allManager .pagingDiv a:visited {
+	color: var(--color-black);
+}

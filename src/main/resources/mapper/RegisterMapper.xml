@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.RegisterDAO">
+	<select id="loginOk" resultType="com.gather.we.dto.RegisterDTO">
+		select userid, username, gender, type from users
+		where userid=#{param1} and password=#{param2}
+	</select>
+	<insert id="registerInsert">
+		insert into users(userid, type, username, password, email, tel, address, gender, mbti, age)
+		values(#{userid}, #{type}, #{username}, #{password}, #{email},#{tel}, #{address}, #{gender}, #{mbti}, ${age})
+	</insert>
+	<select id="idCheckCount" resultType="int">
+		select count(userid)cnt from users where userid=#{param1}
+	</select>
+	<select id="dataAllSelect" resultType="com.gather.we.dto.RegisterDTO">
+		select * from 
+			(select * from
+		 		(select userid, email, username, tel, gender, age, to_char(signupdate, 'YYYY-MM-DD') signupdate from users
+		 		order by userid desc
+		 		)
+ 				<![CDATA[
+				where rownum<=${onePageRecord*nowPage} order by userid asc
+				]]>
+				)
+				<choose>
+					<when test="nowPage!=totalPage">
+						<![CDATA[
+						where rownum<=${onePageRecord} order by userid desc
+						]]>
+					</when>
+					<when test="nowPage==totalPage">
+						<![CDATA[
+						where rownum<=${lastPageRecord} order by userid desc
+						]]>
+					</when>
+				</choose>
+ 	</select>
+	<select id="registerEdit" resultType="com.gather.we.dto.RegisterDTO">
+		select userid, type, username, password, email, tel, address, gender, mbti from users
+		where userid=#{param1}
+	</select>
+	<update id="registerEditOk">
+		update users set rank=#{rank} where userid=#{userid}
+	</update>
+	<select id="userLogSelect" resultType="com.gather.we.dto.UserLogDTO">
+		select rp.userid, rg.no, rg.gametime, si.*
+		from r_participate rp
+		join rank_game rg on rp.no=rg.no 
+		join stadium_info si on rg.st_no = si.st_no	
+		where userid=#{param1}	
+	</select>
+	<select id="userLogNormSelect" resultType="com.gather.we.dto.UserLogDTO">
+		select np.userid, ng.no, ng.gametime, si.*
+		from n_participate np
+		join norm_game ng on np.no=ng.no
+		join stadium_info si on ng.st_no = si.st_no		
+		where userid=#{param1}		
+	</select>
+</mapper>
+

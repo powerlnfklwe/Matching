@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.SportDAO">
+
+	<select id="dataSelect" resultType="com.gather.we.dto.SportDTO">
+		select s_no, sportname from sport order by s_no
+
+	</select>
+	<insert id="sportInsert" parameterType="com.gather.we.dto.SportDTO">
+ 		insert into sport(s_no, sportname, sportdesc, filename)
+ 		values(sport_sq.nextval, #{sportname}, #{sportdesc}, #{filename})
+ 	</insert>
+ 	<delete id="sportDelete">
+ 		delete from sport where no=${param1}
+ 	</delete>
+ 	<select id="sportAllSelect" resultType="com.gather.we.dto.SportDTO">
+		select s_no, sportname, sportdesc, filename from sport
+		order by s_no 
+	</select>
+	<select id="sportOneSelect" resultType="com.gather.we.dto.SportDTO">
+		select s_no, sportname, sportdesc, filename from sport where s_no=${s_no}
+	</select>
+	<update id="sportUpdate" parameterType="com.gather.we.dto.SportDTO">
+		update rank_game set sportname=#{sportname}, sportdesc=#{sportdesc}, filename=#{filename}
+		where s_no=${s_no}
+	</update>
+	<select id="sortedSportnameSelect" resultType="string">
+		select sportname from sport order by sportname
+	</select>
+</mapper>

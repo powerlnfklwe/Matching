@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.GameSchedulerDAO">
+ 	<select id="statusUpdateListSelect" resultType="com.gather.we.dto.GameSchedulerDTO">
+		select no, curr_people, min_people from rank_game
+		where TO_CHAR(gametime,'YYYYMMDD') = TO_CHAR(sysdate + 2,'YYYYMMDD')
+	</select>
+	<update id="statusUpdate" parameterType="com.gather.we.dto.GameSchedulerDTO">
+		update rank_game set g_status=${g_status} where no=${no}
+	</update>
+	<select id="normStatusUpdateListSelect" resultType="com.gather.we.dto.GameSchedulerDTO">
+		select no, curr_people, min_people from norm_game
+		where TO_CHAR(gametime,'YYYYMMDD') = TO_CHAR(sysdate + 1,'YYYYMMDD')
+	</select>
+	<update id="normStatusUpdate" parameterType="com.gather.we.dto.GameSchedulerDTO">
+		update norm_game set g_status=${g_status} where no=${no}
+	</update>
+</mapper>

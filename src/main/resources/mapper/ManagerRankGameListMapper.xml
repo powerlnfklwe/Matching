@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.ManagerRankGameListDAO">
+ 	<select id="rankGameListAllSelect" resultType="com.gather.we.dto.ManagerRankGameListDTO">
+		<![CDATA[
+		SELECT r.no,r.managerid,s.stadium,s.region, s.location, sp.sportname,r.gametime,r.curr_people,r.max_people,r.payment,r.managerfee,r.g_status
+		FROM rank_game r
+			INNER join stadium_info s on r.st_no = s.st_no
+			INNER join sport sp on r.s_no = sp.s_no 
+		WHERE r.gametime-16 < sysdate and sysdate < r.gametime-10
+			AND r.managerid is null
+		ORDER BY r.gametime
+		]]>
+	</select>
+	
+	<update id="updateApply">
+		UPDATE rank_game 
+		set
+		managerid = #{managerid},manager=1	
+		WHERE 1=1
+		AND no = #{no} 
+	</update>
+
+ 	<select id="getListWithPaging" parameterType="com.gather.we.dto.MRankGameListCriteria" resultType="com.gather.we.dto.ManagerRankGameListDTO">
+		SELECT *
+		FROM (
+		  SELECT rownum rnum, t.*
+		  FROM (
+		  SELECT r.no, r.managerid, s.stadium, s.region, s.location, sp.sportname, r.gametime, r.curr_people, r.max_people, r.payment, r.managerfee, r.g_status
+		  FROM rank_game r
+		  	INNER JOIN stadium_info s ON r.st_no = s.st_no
+		    INNER JOIN sport sp ON r.s_no = sp.s_no 
+		  WHERE r.gametime-16 <![CDATA[<]]> sysdate and sysdate <![CDATA[<]]> r.gametime-10
+		    AND r.managerid IS NULL
+		    AND r.s_no = ${logS_no}
+		  ORDER BY r.gametime
+		  ) t
+		  WHERE rownum <![CDATA[<=]]> ${criteria.pageNum * criteria.amount}
+		)
+		WHERE rnum <![CDATA[>]]> ${(criteria.pageNum - 1) * criteria.amount}
+	</select>	
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT count(*)
+		FROM rank_game r
+			INNER JOIN stadium_info s ON r.st_no = s.st_no
+			INNER JOIN sport sp ON r.s_no = sp.s_no 
+		WHERE r.gametime-16 <![CDATA[<]]> sysdate and sysdate <![CDATA[<]]> r.gametime-10
+		AND r.managerid IS NULL
+		AND r.s_no = ${logS_no}
+	</select>
+
+	<insert id="insertApply">
+		INSERT INTO m_settlement(no, managerid, d_status, amount)
+		VALUES(#{no}, #{managerid}, 0, #{managerfee})
+	</insert>
+</mapper>

@@ -1,0 +1,173 @@
+@charset "UTF-8";
+
+#container-oneManager {
+	background: #f6f6f6;
+	border-radius: 20px;
+	padding: 0 20px;
+	display: flex;
+	flex-direction: column;
+}
+
+#container-oneManager h2 {
+	margin: 10px 20px 16px 20px;
+}
+
+#container-oneManager table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+	background-color: var(--color-white);
+	border-radius: 20px;
+}
+
+#container-oneManager th, 
+#container-oneManager td {
+	padding: 14px;
+	border-bottom: 2px solid #f3f3f3;
+}
+
+#container-oneManager th{
+	background: #d1d9e2;
+}
+
+#container-oneManager th:nth-of-type(1) {
+	width: 7.5%;
+	border-radius: 20px 0 0 0;
+}
+
+#container-oneManager th:nth-of-type(2) {
+	width: 7.5%;
+}
+
+#container-oneManager th:nth-of-type(3) {
+	width: 17.5%;
+}
+
+#container-oneManager th:nth-of-type(4) {
+	width: 12.5%;
+}
+
+#container-oneManager th:nth-of-type(5) {
+	width: 30%;
+}
+
+#container-oneManager th:nth-of-type(6) {
+	width: 7.5%;
+}
+
+#container-oneManager th:nth-of-type(7) {
+	width: 10%;
+}
+
+#container-oneManager th:nth-of-type(8) {
+	width: 7.5%;
+	border-radius: 0 20px 0 0;
+}
+
+#container-oneManager .manager_header {
+	width: 100%;
+}
+
+#container-oneManager .manager_info {
+	margin: 10px 0;
+	width: 100%;
+	display: flex;
+	font-size: var(--font-small);
+	font-weight: var(--weight-bold);
+	padding: 14px;
+	background: white;
+	border-radius: 20px;
+	justify-content: center;
+}
+
+#container-oneManager .proof_img {
+	width: 20%;
+	display: flex;
+	margin: 0 auto;
+}
+
+#container-oneManager .manager_tail {
+	width: 100%;
+	padding: 0 14px;
+	margin: 10px 0;
+	display: flex;
+	align-items: center;
+	font-size: var(--font-small);
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+#container-oneManager .button_box {
+	width: 100%;
+	padding: 0 20px;
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+
+#container-oneManager .manager_tail a:link,
+#container-oneManager .manager_tail a:hover,
+#container-oneManager .manager_tail a:focus,
+#container-oneManager .manager_tail a:visited {
+	color: var(--color-admin-black);
+}
+
+#container-oneManager #approve {
+	font-size: var(--font-medium);
+	padding: 0 30px;
+	margin: 0 30px 0 0;
+	border-radius: 20px;
+	border: 4px solid black;
+	color: var(--color-black);
+	cursor: pointer;
+	transition-duration: 0.4s;
+}
+
+#container-oneManager #approve:hover {
+	background: var(--color-light-blue);
+}
+
+#container-oneManager #approve:active {
+	background: var(--color-light-blue);
+}
+
+#container-oneManager #postpone {
+	font-size: var(--font-medium);
+	padding: 0 30px;
+	margin: 0 30px 0 0;
+	border-radius: 20px;
+	border: 4px solid black;
+	color: var(--color-black);
+	cursor: pointer;
+	transition-duration: 0.4s;
+}
+
+#container-oneManager #postpone:hover {
+	background: var(--color-manager-light-green);
+}
+
+#container-oneManager #postpone:active {
+	background: var(--color-manager-light-green);
+}
+
+#container-oneManager #refuse {
+	font-size: var(--font-medium);
+	padding: 0 30px;
+	margin: 0 30px 0 0;
+	border-radius: 20px;
+	border: 4px solid black;
+	color: var(--color-black);
+	cursor: pointer;
+	transition-duration: 0.4s;
+}
+
+#container-oneManager #refuse:hover {
+	background: var(--color-red);
+}
+
+#container-oneManager #refuse:active {
+	background: var(--color-red);
+}

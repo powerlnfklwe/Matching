@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+/* 경기페이지 헤더 */
+.game_header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	height: 240px;
+}
+
+.game_header:after { /* 헤더 사진 위에 약간 어두운 색을 덧씌워 header_title 글자가 더 잘 보이도록 함 */
+	display: block;
+	width: 100%;
+	height: 240px;
+	content: '';
+	background-color: var(--color-black);
+	opacity: 0.4;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+/* 랭크경기 헤더 이미지 */
+.rank_game_header {
+	background: url("/static/img/game/rank_game_header.jpg") no-repeat 50% 35% / cover;
+}
+
+/* 일반경기 헤더 이미지 */
+.norm_game_header {
+	background: url("/static/img/game/norm_game_header.jpg") no-repeat 50% 35% / cover;
+}
+
+/* 경기 유형 */
+.game_header_title {
+	font-size: var(--font-large);
+	font-weight: var(--weight-bold);
+	color: white;
+	z-index: 99;
+}
+.game_nav>b{
+	font-size:25px;
+}
+.game_nav {
+	height: 60px;
+	background-color: #F1F2F4; /* #EDEFF2; */
+	color: var(--color-blue);
+	font-size: 20px;
+	text-align: center;
+	line-height: 60px;
+	margin: 0 auto;
+	border-radius: 20px;
+}
+.norm_game_nav>b{
+	font-size:25px;
+}
+.norm_game_nav{
+	height: 60px;
+	background-color: #F0F2F0;
+	color: var(--color-norm-green);
+	font-size: 20px;
+	text-align: center;
+	line-height: 60px;
+	margin: 0 auto;
+	border-radius: 20px;
+}

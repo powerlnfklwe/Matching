@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.ManagerDAO">
+	<insert id="managerInsert" parameterType="com.gather.we.dto.ManagerDTO">
+		insert into manager(managerid, s_no, type, m_name, password, email, tel, address, gender, prooffile, m_account)
+		values(#{managerid}, ${s_no}, #{type}, #{m_name}, #{password}, #{email}, #{tel}, #{address}, #{gender}, #{prooffile}, #{m_account})
+	</insert>	
+	<delete id="dataDelete">
+ 		delete from manager where managerid=#{param1}
+ 	</delete>
+ 	<select id="loginManOk" resultType="com.gather.we.dto.ManagerDTO">
+		select managerid, m_name, s_no, active from manager
+		where managerid=#{param1} and password=#{param2}
+	</select>
+	<select id="idCheckCount" resultType="int">
+		select count(managerid)cnt from manager where managerid=#{param1}
+	</select>
+</mapper>

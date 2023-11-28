@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.NormalGameDAO">
+	<select id="normGameListSelect" resultType="com.gather.we.dto.NormGameListDTO">
+		select n.no, s.stadium, s.region, n.gametime, n.usetime, n.min_people, n.max_people, n.curr_people, n.gendertype, n.writer
+		from norm_game n join stadium_info s on n.st_no=s.st_no 
+		where n.s_no=${s_no} and (<![CDATA[gametime-16 <= sysdate and sysdate <= gametime]]>) and (<![CDATA[1 <= n.g_status and n.g_status <= 2]]>)
+		<if test="regionList!=null and regionList[0]!='all'">
+			and s.region in
+			<foreach item="region" index="index" collection="regionList" open="(" separator="," close=")">
+				#{region}
+			</foreach>
+		</if>
+		<if test="gendertype!=null and gendertype!='all'">
+			and n.gendertype=#{gendertype}
+		</if>
+		order by n.gametime
+	</select>
+	
+	<select id="normGameDetailSelect" resultType="com.gather.we.dto.NormGameDetailDTO">
+		select n.no, n.s_no, n.st_no, n.gametime, n.usetime, n.min_people, n.max_people, n.curr_people, n.gendertype, n.payment, n.g_status, s.sportname, s.filename, st.stadium, st.location
+		from norm_game n, sport s, stadium_info st
+		where n.no=${no} and n.s_no = s.s_no and n.st_no = st.st_no
+	</select>
+	
+	<select id="normGameDetailAllSelect" resultType="com.gather.we.dto.NormGameDetailDTO">
+		select n.no, n.s_no, n.st_no, n.gametime, n.usetime, n.min_people, n.max_people, n.curr_people, n.gendertype, n.payment, n.g_status, s.sportname, s.filename, st.stadium, st.location
+		from norm_game n, sport s, stadium_info st
+		where n.s_no = s.s_no and n.st_no = st.st_no
+	</select>
+	
+	<insert id="normGameInsert" parameterType="com.gather.we.dto.NormGameDTO">
+ 		insert into norm_game(no, s_no, st_no, gametime, usetime, payment) 
+ 		values(norm_sq.nextval, ${s_no}, ${st_no}, #{gametime}, #{usetime}, ${payment})
+ 	</insert>
+ 	
+ 	<select id="newNormGameList" resultType="com.gather.we.dto.NormGameDetailDTO">
+ 		select n.no, n.s_no, n.st_no, n.gametime, n.usetime, n.payment, s.sportname, s.filename, st.stadium, st.location, st.region
+ 		from norm_game n, sport s, stadium_info st
+ 		where n.s_no = s.s_no and n.st_no = st.st_no and n.st_no = ${param1} and n.g_status = 0 and <![CDATA[sysdate <= n.gametime-3]]> order by n.gametime
+ 	</select>
+ 	
+ 	<update id="normGameUpdate" parameterType="com.gather.we.dto.NormGameDTO">
+ 		update norm_game set min_people=${min_people}, max_people=${max_people}, gendertype=#{gendertype}, g_status=1, writer=#{writer}
+		where no=${no}
+ 	</update>
+ 	
+ 	<update id="normGameDetailUpdate" parameterType="com.gather.we.dto.NormGameDetailDTO">
+ 		update norm_game set s_no=${s_no}, st_no=${st_no}, gametime=#{gametime}, usetime=#{usetime}, min_people=${min_people}, max_people=${max_people}, gendertype=#{gendertype}, g_status=${g_status}
+		where no=${no}
+ 	</update>
+ 	
+ 	<update id="normGameCountUp">
+ 		update norm_game set curr_people = curr_people+1 where no=${param1}
+ 	</update>
+
+	<update id="currPeopleCount">
+		update norm_game set curr_people=curr_people+1 where no=${no}
+	</update>
+	
+	<select id="pageSelect" resultType="com.gather.we.dto.NormGameDetailDTO">
+		select * from
+				(select * from
+			    	(select n.no, n.s_no, n.st_no, n.gametime, n.usetime, n.min_people, n.max_people, n.curr_people, n.gendertype, n.payment, n.g_status, s.sportname, s.filename, st.stadium, st.location
+						from norm_game n, sport s, stadium_info st where n.s_no = s.s_no and n.st_no = st.st_no order by n.no desc)
+			    	<![CDATA[
+			    	where rownum<=${nowPage*onePageRecord} order by no asc
+			    	]]>
+		    		)
+		    		<choose>
+		    		<when test="nowPage!=totalPage">
+		    	<![CDATA[
+		    	where rownum<=${onePageRecord} order by no desc
+		    	]]>
+		    	</when>
+		    	<when test="nowPage==totalPage">
+		    	<![CDATA[
+		    	where rownum<=${lastPageRecord} order by no desc
+		    	]]>
+		    	</when>
+		    	</choose>
+	</select>
+	
+	<select id="totalRecord" resultType="int">
+		select count(no) from norm_game
+	</select>
+</mapper>

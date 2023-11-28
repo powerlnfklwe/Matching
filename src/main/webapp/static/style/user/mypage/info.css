@@ -1,0 +1,112 @@
+@charset "UTF-8";
+
+#infoContent{
+	/* margin-left: 300px;
+	margin-top: 50px;
+	margin-right: 5px;
+	margin-bottom: 50px; */
+	font-size: 18px;
+	margin-left: 285px;
+	padding-top: 70px;
+	height: 1200px;
+}
+/*상부 스타일*/
+.infoh3{
+	text-align: right;
+}
+
+/*----회원정보수정 폼-----------*/
+#infoEditForm{
+	/* background: #ddd; */
+	width: 780px;
+	margin: 40px auto;
+}
+#infoUl{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	 
+}
+#infoUl>li{
+	margin: 10px;
+	height: 50px;
+}
+#infoUl>li>input{
+	height: 40px;
+    background: #F8F8F9;
+    border: none;
+    width: 560px;
+    border-radius: 15px;
+    padding-left: 20px;
+	height: 40px;
+	background: #F8F8F9;
+    border: none;
+    width: 563px;
+}
+#infoUl>#infoGender{
+	line-height: 40px;
+	padding-left: 20px;
+}
+#infoUl>#infoGender>input{
+	width: 15px;
+	height: 12px;
+}
+#infoUl>#infoGender>input:last-child{
+	width: 15px;
+	height: 12px;
+	margin-left: 30px;
+}
+#infoUl>#infoTel input{
+	width: 150px;
+	/* background: white; */
+	padding-left: 12px;
+	height: 35px;
+	border-radius: 15px;
+	text-align: center;
+}
+#infoUl>#infoTel>#tel1{
+	height: 44px;
+	width: 120px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    text-align: center;
+}
+#infoUl>li:nth-child(2n+1){
+	flex: 1 1 20%;
+	text-align: center;
+    line-height: 50px;
+    font-weight: 600;
+    background: #EEEFFB; /*#C3D8FE;*/
+    border-radius: 15px;
+}
+#infoUl>li:nth-child(2n){
+	flex: 1 1 70%;
+	background: #F8F8F9; /*aliceblue*/
+	padding-top: 4px;
+    /* padding-left: 25px; */
+    border-radius: 15px;
+}
+#infoUl #mbti{
+	width: 528px;
+    height: 40px;
+    background: #F8F8F9;
+    line-height: 40px;
+    margin-top: 2px;
+    border: none;
+    padding-left: 20px;
+    border-radius: 15px;	
+}
+
+/* submit버튼 스타일 */
+#infoBtn{
+	background: #49496E;
+	height: 45px;
+	width: 200px;
+	border-radius: 50px;
+	color: white;
+	font-weight: var(--weight-bold);
+}
+.infoBtn{
+	text-align: right;
+	margin-top: 15px;
+}

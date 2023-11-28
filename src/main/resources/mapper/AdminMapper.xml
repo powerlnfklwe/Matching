@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.AdminDAO">
+ 	<select id="loginAdminOk" resultType="com.gather.we.dto.AdminDTO">
+		select adminid, admin_name, type from admin
+		where adminid=#{param1} and password=#{param2}
+	</select>
+	<select id="revenue" resultType="com.gather.we.dto.UserPayDTO">
+ 		select * from
+ 			(select * from
+ 				(select payment_no, payer_name, paid_amount, paid_at, success from user_pay order by payment_no desc)
+ 				<![CDATA[
+		    	where rownum<=${nowPage*onePageRecord} order by payment_no asc
+		    	]]>
+	    		)
+	    		<choose>
+	    		<when test="nowPage!=totalPage">
+	    	<![CDATA[
+	    	where rownum<=${onePageRecord} order by payment_no desc
+	    	]]>
+	    	</when>
+	    	<when test="nowPage==totalPage">
+	    	<![CDATA[
+	    	where rownum<=${lastPageRecord} order by payment_no desc
+	    	]]>
+	    	</when>
+	    	</choose>
+ 	</select>
+ 	<select id="revenueTotalRecord" resultType="int">
+		select count(payment_no) from
+			(select payment_no, payer_name, paid_amount, paid_at, success from user_pay)
+	</select>
+ 	<select id="expense" resultType="com.gather.we.dto.AdminManagerSettlementDTO">
+		 select * from
+		 	(select * from	
+		 		(select s.no, s.managerid, s.datetime, s.d_status, s.amount, m.m_name, m.m_account
+		 		from m_settlement s
+		 		join manager m on s.managerid=m.managerid
+		 		where d_status=1 order by s.no desc)
+		 		<![CDATA[
+		    	where rownum<=${nowPage*onePageRecord} order by no asc
+		    	]]>
+	    		)
+	    		<choose>
+	    		<when test="nowPage!=totalPage">
+	    	<![CDATA[
+	    	where rownum<=${onePageRecord} order by no desc
+	    	]]>
+	    	</when>
+	    	<when test="nowPage==totalPage">
+	    	<![CDATA[
+	    	where rownum<=${lastPageRecord} order by no desc
+	    	]]>
+	    	</when>
+	    	</choose>
+ 	</select>
+ 	<select id="expenseTotalRecord" resultType="int">
+		select count(no) from
+			(select s.no, s.managerid, s.datetime, s.d_status, s.amount, m.m_name, m.m_account
+ 			from m_settlement s
+ 			join manager m on s.managerid=m.managerid
+ 			where d_status=1 
+ 			)
+	</select>
+ 	<select id="managerFee" resultType="com.gather.we.dto.AdminManagerSettlementDTO">
+		 select * from		
+		 	(select * from	
+		 		(select s.no, s.managerid, s.datetime, s.d_status, s.amount, m.m_name, m.m_account 
+		 		from m_settlement s
+		 		join manager m on s.managerid=m.managerid order by s.no desc)
+		 		<![CDATA[
+		    	where rownum<=${nowPage*onePageRecord} order by no asc
+		    	]]>
+	    		)
+	    		<choose>
+	    		<when test="nowPage!=totalPage">
+	    	<![CDATA[
+	    	where rownum<=${onePageRecord} order by no desc
+	    	]]>
+	    	</when>
+	    	<when test="nowPage==totalPage">
+	    	<![CDATA[
+	    	where rownum<=${lastPageRecord} order by no desc
+	    	]]>
+	    	</when>
+	    	</choose>
+ 	</select>
+ 	<select id="managerFeeTotalRecord" resultType="int">
+		select count(no) from
+			(select s.no, s.managerid, s.datetime, s.d_status, s.amount, m.m_name, m.m_account 
+ 			from m_settlement s
+ 			join manager m on s.managerid=m.managerid)
+	</select>
+ 	<update id="waitOk">
+		update m_settlement set d_status=1, datetime=#{datetime} where managerid=#{managerid} and no=#{no}
+	</update>
+	<select id="totalRecord" resultType="int">
+		select count(userid) totalRecord from users
+	</select>
+</mapper>

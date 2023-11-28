@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+.container-mypage-all{
+	margin: 0 auto;
+	width: 1200px;
+	height: 1200px;
+}
+.container-mypage-all #leftMenu{
+	display: flex;
+	flex-direction: column;
+	list-style-type: none;
+	padding:0px;
+	margin:0px;
+	background: #FEF7DD;
+	width: 250px;
+	/* height: 100%;  */
+	overflow: auto;
+	position: absolute;
+	text-align: center;
+	height: 1220px;
+}
+
+/* 프로필까지 */
+#leftMenu>.h{
+	font-size: var(--font-regular);
+	/* margin-bottom: 50px; */
+	padding: 50px 20px 20px 20px; 
+	margin: 10px 0 20px 0;
+	font-weight: var(--weight-bold);
+}
+/*---leftMenu에서 스크롤바 없애기-----------------*/
+.container-mypage-all #leftMenu{ /*IE, Edge*/ 
+   -ms-overflow-style: none;
+}
+.container-mypage-all #leftMenu::-webkit-scrollbar{ /* Chrome, Safari, Opera */
+  display:none;
+}
+/*----------------------------------------*/
+.container-mypage-all .img img{
+	width: 45%;
+	margin-bottom: 5px;
+	/* padding: 25px; */
+	background: #FFFDF8; 
+	border-radius: 30px;
+}
+.container-mypage-all .img{
+	margin-bottom: 65px;
+	padding-bottom: 45px;
+	border-bottom: 5px solid white;
+}
+.container-mypage-all span{
+	font-size: 14px;
+}
+
+/* menuList 스타일넣기 */
+.container-mypage-all #menuList li{
+	float: left;
+}
+.container-mypage-all #menuList li{
+	height: 40px;
+	margin-bottom: 3px;
+}
+.container-mypage-all #menuList img{
+	height: 20px;
+	width: 20px;
+	margin : 12px;
+}
+.container-mypage-all #menuList li:nth-child(2n+1){
+	width: 20%;
+	margin-left: 30px;
+	/* background: pink; */
+}
+.container-mypage-all #menuList>li:nth-child(2n){
+	width: 55%;
+	/* background: yellowgreen; */
+}
+.container-mypage-all #menuList>li:nth-child(2n):hover{
+	background: #FDEDB4;
+	font-weight: bold;  
+}
+.container-mypage-all .open{
+	padding-left: 25px;
+	/* text-align: left; */
+}
+
+.container-mypage-all li a {
+	display: block;
+	padding: 10px;
+}

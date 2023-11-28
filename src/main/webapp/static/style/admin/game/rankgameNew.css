@@ -1,0 +1,126 @@
+@charset "UTF-8";
+
+/* 랭크경기 등록 */
+
+#rankgameForm {
+	display: flex;
+	flex-direction: column;
+	border-radius: 20px;
+}
+
+#rankgameForm ul{
+	overflow-y: auto;
+	background-color: var(--color-white);
+	margin-bottom: 0;
+	border-radius: 20px;
+}
+
+#rankgameForm label {
+	display: inline-block;
+	width: 160px;
+	height: 60px;
+	line-height: 60px;
+	border-right: 2px solid #f3f3f3;
+	padding: 0 16px;
+	margin-right: 24px;
+	font-weight: var(--weight-bold);
+}
+
+#rankgameForm .item {
+	display: flex;
+	align-items: center;
+	height: 60px;
+	border-bottom: 2px solid #f3f3f3;
+	font-size: var(--font-micro);
+}
+
+#rankgameForm .item:last-of-type {
+	border-bottom: none;
+}
+
+#rankgameForm #gametype,
+#rankgameForm #s_no,
+#rankgameForm #gendertype,
+#rankgameForm #req_rank {
+	width: 100px;
+	font-size: var(--font-micro);
+}
+
+#rankgameForm #min_people,
+#rankgameForm #max_people,
+#rankgameForm #payment,
+#rankgameForm #managerfee {
+	width: 100px;
+	margin-right:4px;
+	font-size: var(--font-micro);
+}
+
+#rankgameForm #stadium,
+#rankgameForm #gametime,
+#rankgameForm #usetime {
+	font-size: var(--font-micro);
+}
+
+
+#rankgameForm .btns {
+	align-self: end;
+	margin-top: 30px;
+}
+
+#rankgameForm .btn-cancel {
+	margin-right: 16px;
+}
+
+#normgameForm {
+	display: flex;
+	flex-direction: column;
+	border-radius: 20px;
+}
+
+#normgameForm ul{
+	overflow-y: auto;
+	background-color: var(--color-white);
+	margin-bottom: 0;
+	border-radius: 20px;
+}
+
+#normgameForm label {
+	display: inline-block;
+	width: 150px;
+	height: 60px;
+	line-height: 60px;
+	border-right: 2px solid #f3f3f3;
+	padding: 0 16px;
+	margin-right: 24px;
+}
+
+#normgameForm .item {
+	display: flex;
+	align-items: center;
+	height: 60px;
+	border-bottom: 2px solid #f3f3f3;
+}
+
+#normgameForm .item:last-of-type {
+	border-bottom: none;
+}
+
+#normgameForm #gametype {
+	width: 80px;
+}
+
+#normgameForm #min_people,
+#normgameForm #max_people,
+#normgameForm #payment {
+	width: 80px;
+	margin-right:4px
+}
+
+#normgameForm .btns {
+	align-self: end;
+	margin-top: 30px;
+}
+
+#normgameForm .btn-cancel {
+	margin-right: 16px;
+}

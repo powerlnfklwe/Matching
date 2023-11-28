@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+/* Global */
+:root {
+    /* Color */
+    --color-white: #ffffff;
+    --color-orange: #FDA238;
+    --color-yellow: #FEF7DD;
+    --color-dark-yellow: #FCF0C1;
+    --color-lightest-blue: #26B6F2;
+    --color-light-blue: #448FE4;
+    --color-blue: #2B3D9B;
+    --color-board-blue: #F3F5FA; /*게시판 배경 등 기본 바탕색*/
+    --color-light-pink: #F89E9D;
+    --color-lighter-pink: #FFBBBB; /*스포츠추천 nav border*/
+    --color-pink: #ed9392;
+    --color-light-gray: #EAE9E9;
+    --color-gray: #D2D1D1;
+    --color-dark-gray: #484848;
+    --color-line-gray: #f3f3f3;
+    --color-black: #000000;
+    --color-red: #DD4242;
+    --color-rank-blue: #6791E2; /* 랭크게임 border color*/
+    --color-rank-light-blue: #F0F2FA; /* 랭크게임 바탕색 */
+    --color-rank-hover: #F3F6FF; /* 랭크게임 경기목록 hover시 바탕색*/
+    --color-norm-green: #4DA065; /* 일반게임 border color */
+    --color-norm-light-green: #F3F7F4; /* 일반게임 바탕색*/
+    --color-norm-hover: #F8FEF9;; /* 일반게임 경기목록 hover시 바탕색*/
+    --color-admin-black: #2D2D2D;
+    --color-admin-gray: #E6E9EC;
+    --color-admin-blue-gray: #D1D9E2;
+    --color-admin-dark-blue: #5F6D7E;
+    --color-manager-dark-green: #1B5A1D;
+    --color-manager-middle-green: #319F52;
+    --color-manager-light-green: #28BD54;
+    --color-bronze: #AD5600;
+    --color-sliver: #C9C4C4;
+    --color-gold: #EC9A00;
+    --color-platinum: #27E2A4;
+    --color-diamond: #00B4FC;
+  
+    /* Font size */
+    --font-large: 54px;
+    --font-medium: 40px;
+    --font-medium-two: 35px;
+    --font-semi-medium: 30px;
+    --font-regular: 26px;
+    --font-small: 22px;
+    --font-micro: 18px;
+  
+    /* Font weight */
+    --weight-bold: 700;
+    --weight-medium: 500;
+    --weight-regular: 400;
+    --weight-light: 300;
+  
+    /* Size */
+    --size-border-radius: 4px;
+  }
+  
+  /* Universal tags */
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    cursor: default;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  
+  a {
+    text-decoration: none;
+    outline: none;
+  }
+  
+  ul, ol {
+    padding-left: 0;
+  }
+  
+  li {
+    list-style: none;
+  }
+  
+  button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  /* Typography */
+  h1 {
+    font-size: var(--font-large);
+    font-weight: var(--weight-bold);
+    margin: 16px 0;
+  }
+  
+  h2 {
+    font-size: var(--font-medium);
+    font-weight: var(--weight-bold);
+    margin: 8px 0;
+  }
+  
+  h3 {
+  	font-size: var(--font-semi-medium);
+  	font-weight: var(--weight-bold);
+  	margin: 8px 0;
+  }
+  
+  p {
+    font-size: var(--font-regular);
+    font-weight: var(--weight-regular);
+    margin: 4px 0;
+  }
+  

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.UserPayDAO">
+	<insert id="userPayInsert" parameterType="com.gather.we.dto.UserPayDTO">
+ 		insert into user_pay(payment_no, success, payer_name, paid_at, paid_amount) 
+ 		values(#{payment_no}, #{success}, #{payer_name}, ${paid_at}, ${paid_amount})
+ 	</insert>
+ 	<select id="rankPayDoneSelect" resultType="com.gather.we.dto.UserPayDoneDTO">
+		select s.sportname, r.gametime, st.stadium, r.payment
+		from user_pay p
+		inner join r_participate rp on p.payment_no = rp.payment_no
+		inner join rank_game r on rp.no = r.no
+		inner join sport s on r.s_no = s.s_no
+		inner join stadium_info st on r.st_no = st.st_no
+		where p.payment_no=#{payment_no}
+	</select>
+	<select id="normPayDoneSelect" resultType="com.gather.we.dto.UserPayDoneDTO">
+		select s.sportname, n.gametime, st.stadium, n.payment
+		from user_pay p
+		inner join n_participate np on p.payment_no = np.payment_no
+		inner join norm_game n on np.no = n.no
+		inner join sport s on n.s_no = s.s_no
+		inner join stadium_info st on n.st_no = st.st_no
+		where p.payment_no=#{payment_no}
+	</select>
+</mapper>

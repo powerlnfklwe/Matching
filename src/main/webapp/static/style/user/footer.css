@@ -1,0 +1,103 @@
+@charset "UTF-8";
+
+/*footer*/
+
+footer {
+	text-align: center;
+	/* margin-top: 50px; */
+	font-size: var(--font-small);
+	font-weight: var(--weight-bold);
+}
+
+.foot-main-container {
+	width: 100%;
+	background: var(--color-yellow);
+}
+
+.foot-sub-container {
+	width: 100%;
+	background: var(--color-yellow); /* var(--color-dark-yellow); */
+}
+
+#main-container {
+	background: var(--color-yellow);
+	margin: 0 auto;
+	padding: 0 10px;
+	width: 1200px;
+	height: 100%;
+}
+
+#sub-container {
+	background: var(--color-yellow); /* var(--color-dark-yellow); */
+	margin: 0 auto;
+	padding: 0 10px;
+	width: 1200px;
+	height: 100%;
+}
+
+.flex-item {
+	width: 340px;
+	margin: 25px 25px 0;
+}
+
+.foot-table {
+	display: table;
+	width: 100%;
+}
+
+.foot-table-row {
+	display: table-row;
+}
+
+.foot-table-cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+#foot-content1 > li {
+	float: left;
+	width: 33%;
+}
+
+#foot-content2 > li {
+	margin: 15px 0;
+}
+
+#foot-content3 > li {
+	float: left;
+	width: 50%;
+}
+
+#foot-content4 {
+	width: 100%;
+	margin: 3px 0;
+}
+
+#foot-content4 > li {
+	float: left;
+	width: 50%;
+	font-size: var(--font-micro);
+	font-weight: var(--weight-regular);
+	color: var(--color-dark-gray);
+}
+
+a.foot-link:link, a.foot-link:visited {
+	color: var(--color-black);
+}
+
+a.foot-link:hover {
+	text-decoration: underline;
+}
+
+@media(max-width: 991px){ /* 창을 줄였을 때 반응형 스타일 */
+	#foot-box1, #foot-box3 {
+		display: none;
+	}
+	.d-flex {
+		width: 100%;
+		justify-content: flex-start;
+	}
+	#foot-content4 {
+		visibility: hidden;
+	}
+}

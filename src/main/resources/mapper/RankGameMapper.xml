@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.RankGameDAO">
+	<insert id="rankGameInsert" parameterType="com.gather.we.dto.RankGameDTO">
+ 		insert into rank_game(no, s_no, st_no, gametime, usetime, min_people, max_people, gendertype, req_rank, payment, managerfee) 
+ 		values(rank_sq.nextval, ${s_no}, ${st_no}, #{gametime}, #{usetime}, ${min_people}, ${max_people}, #{gendertype}, ${req_rank}, ${payment}, ${managerfee})
+ 	</insert>
+ 	
+ 	<update id="rankGameUpdate" parameterType="com.gather.we.dto.RankGameDTO">
+		update rank_game set s_no=${s_no}, st_no=${st_no}, gametime=#{gametime}, usetime=#{usetime}, min_people=${min_people}, max_people=${max_people}, gendertype=#{gendertype}, req_rank=${req_rank}, payment=${payment}, managerfee=${managerfee}
+		where no=${no}
+	</update>
+	
+ 	<select id="rankGameOneSelect" resultType="com.gather.we.dto.RankGameDTO">
+		select no, s_no, st_no, gametime, usetime, min_people, max_people, curr_people, gendertype, req_rank, payment, managerfee, g_status
+		from rank_game where no=${no}
+	</select>
+ 	
+ 	<select id="rankGameListSelect" resultType="com.gather.we.dto.RankGameListDTO">
+		select r.no, s.stadium, s.region, r.gametime, r.usetime, r.min_people, r.max_people, r.curr_people, r.gendertype, r.req_rank 
+		from rank_game r join stadium_info s on r.st_no=s.st_no 
+		where r.s_no=${s_no} and r.managerid is not null and (<![CDATA[gametime-9 <= sysdate and sysdate < gametime]]>)
+		<if test="regionList!=null and regionList[0]!='all'">
+			and s.region in
+			<foreach item="region" index="index" collection="regionList" open="(" separator="," close=")">
+				#{region}
+			</foreach>
+		</if>
+		<if test="gendertype!=null and gendertype!='all'">
+			and r.gendertype=#{gendertype}
+		</if>
+		<if test="req_rank!=null and req_rank!=0">
+			and r.req_rank=${req_rank}
+		</if>
+		order by r.gametime
+	</select>
+	
+	<select id="rankGameDetailSelect" resultType="com.gather.we.dto.RankGameDetailDTO">
+		select r.no, r.s_no, r.st_no ,r.gametime, r.usetime, r.min_people, r.max_people, r.curr_people, r.gendertype, r.req_rank, r.payment, s.sportname, s.filename, st.stadium, st.location, m.m_name
+		from rank_game r
+		inner join sport s on r.s_no = s.s_no
+		inner join stadium_info st on r.st_no = st.st_no
+		inner join manager m on r.managerid = m.managerid
+		where r.no=${no}
+	</select>
+	
+	<update id="currPeopleCount">
+		update rank_game set curr_people=curr_people+1 where no=${no}
+	</update>
+	
+ 	<select id="adminRankGameAllSelect" resultType="com.gather.we.dto.AdminRankGameDTO">
+		select s.sportname, st.stadium, r.gametime, r.no, r.g_status, r.managerid
+		from rank_game r
+		inner join sport s on r.s_no = s.s_no
+		inner join stadium_info st on r.st_no = st.st_no
+		order by no desc
+	</select>
+	
+	<select id="pageSelect" resultType="com.gather.we.dto.AdminRankGameDTO">
+		select * from
+				(select * from
+			    	(select s.sportname, st.stadium, r.gametime, r.no, r.g_status, r.managerid, r.usetime
+						from rank_game r, sport s, stadium_info st where r.s_no = s.s_no and r.st_no = st.st_no order by r.no desc)
+			    	<![CDATA[
+			    	where rownum<=${nowPage*onePageRecord} order by no asc
+			    	]]>
+		    		)
+		    		<choose>
+		    		<when test="nowPage!=totalPage">
+		    	<![CDATA[
+		    	where rownum<=${onePageRecord} order by no desc
+		    	]]>
+		    	</when>
+		    	<when test="nowPage==totalPage">
+		    	<![CDATA[
+		    	where rownum<=${lastPageRecord} order by no desc
+		    	]]>
+		    	</when>
+		    	</choose>
+	</select>
+	
+	<select id="totalRecord" resultType="int">
+		select count(no) from rank_game
+	</select>
+</mapper>

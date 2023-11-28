@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.MypageDAO">
+	<select id="getUserinfo" resultType="com.gather.we.dto.MypageUserDTO">
+		select userid, type, username, password, email, age, tel, address, gender, mbti, signupdate from users where userid=#{param1}
+	</select> 
+	
+	<select id="getUsername" resultType="String">
+		select username from users where userid=#{param1}
+	</select>
+	
+	<select id="allgameList" resultType="com.gather.we.dto.MypageApplyListDTO">
+		select * from
+			(select * from
+				(select participate.userid, game.no, game.s_no, game.st_no, game.gametime, game.g_status, s.sportname, si.stadium, gt2ago
+				from (select no, s_no, st_no, gametime, g_status, gametime-2 gt2ago from rank_game rg
+				      union
+				      select no, s_no, st_no, gametime, g_status, gametime-2 gt2ago from norm_game ng) game
+				join 
+				    (select no, userid from r_participate rp
+				    union
+				    select no, userid from n_participate np) participate
+				on game.no = participate.no and participate.userid = #{userid}
+				join sport s
+				on s.s_no = game.s_no
+				join stadium_info si
+				on si.st_no = game.st_no
+				<if test="SelectedDate != null and SelectedDate !=''">
+					where to_date(game.gametime)  <![CDATA[ <= ]]> to_date(#{SelectedDate})
+				</if>
+					order by game.gametime desc)
+				<![CDATA[
+				    where rownum<=${nowPage*onePageRecord} order by gametime asc
+				    	]]>
+			    		)
+			    		<choose>
+			    		<when test="nowPage!=totalPage">
+			    	<![CDATA[
+			    	where rownum<=${onePageRecord} order by gametime desc
+			    	]]>
+			    	</when>
+			    	<when test="nowPage==totalPage">
+			    	<![CDATA[
+			    	where rownum<=${lastPageRecord} order by gametime desc
+			    	]]>
+			    	</when>
+			    	</choose>
+	</select>
+	
+	<select id="allTotalRecord" resultType="int">
+		select count(no) from
+			(select participate.userid, game.no, game.s_no, game.st_no, game.gametime, game.g_status, s.sportname, si.stadium
+					from (select no, s_no, st_no, gametime, g_status from rank_game rg
+					      union
+					      select no, s_no, st_no, gametime, g_status from norm_game ng) game
+					join 
+					    (select no, userid from r_participate rp
+					    union
+					    select no, userid from n_participate np) participate
+					on game.no = participate.no and participate.userid = #{param1}
+					join sport s
+					on s.s_no = game.s_no
+					join stadium_info si
+					on si.st_no = game.st_no
+					order by game.gametime desc)
+	</select>
+	
+	<select id="rankgameList" resultType="com.gather.we.dto.MypageApplyListDTO">
+		select * from	
+			(select * from	
+				(select rp.userid, rg.no, s.sportname, rg.gametime, si.stadium, rg.g_status, rg.gametime-2 gt2ago from r_participate rp
+				join rank_game rg
+				on rp.no = rg.no and rp.userid=#{userid}
+				join stadium_info si
+				on rg.st_no = si.st_no
+				join sport s
+				on rg.s_no = s.s_no
+				<if test="SelectedDate != null and SelectedDate !=''">
+					where to_date(rg.gametime)  <![CDATA[ <= ]]> to_date(#{SelectedDate})
+				</if>
+				order by rg.gametime desc)
+				<![CDATA[
+				    where rownum<=${nowPage*onePageRecord} order by gametime asc
+				    	]]>
+			    		)
+			    		<choose>
+			    		<when test="nowPage!=totalPage">
+			    	<![CDATA[
+			    	where rownum<=${onePageRecord} order by gametime desc
+			    	]]>
+			    	</when>
+			    	<when test="nowPage==totalPage">
+			    	<![CDATA[
+			    	where rownum<=${lastPageRecord} order by gametime desc
+			    	]]>
+			    	</when>
+			    	</choose>
+	</select>
+	
+	<select id="rankTotalRecord" resultType="int">
+	select count(no) from
+		(select rp.userid, rg.no, s.sportname, rg.gametime, si.stadium, rg.g_status, rg.gametime-2 gt2ago from r_participate rp
+		join rank_game rg
+		on rp.no = rg.no and rp.userid=#{param1}
+		join stadium_info si
+		on rg.st_no = si.st_no
+		join sport s
+		on rg.s_no = s.s_no
+		order by rg.gametime desc)
+	</select>
+	
+	<select id="normgameList" resultType="com.gather.we.dto.MypageApplyListDTO">
+		select * from	
+			(select * from
+				(select np.userid, ng.no, s.sportname, ng.gametime, si.stadium, ng.g_status, ng.gametime-2 gt2ago from norm_game ng
+				join n_participate np
+				on np.no = ng.no and np.userid=#{userid}
+				join stadium_info si
+				on si.st_no = ng.st_no
+				join sport s
+				on s.s_no = ng.s_no
+				<if test="SelectedDate != null and SelectedDate !=''">
+					where to_date(ng.gametime)  <![CDATA[ <= ]]> to_date(#{SelectedDate})
+				</if>
+				order by ng.gametime desc)
+				<![CDATA[
+				    where rownum<=${nowPage*onePageRecord} order by gametime asc
+				    	]]>
+			    		)
+			    		<choose>
+			    		<when test="nowPage!=totalPage">
+			    	<![CDATA[
+			    	where rownum<=${onePageRecord} order by gametime desc
+			    	]]>
+			    	</when>
+			    	<when test="nowPage==totalPage">
+			    	<![CDATA[
+			    	where rownum<=${lastPageRecord} order by gametime desc
+			    	]]>
+			    	</when>
+			    	</choose>
+	</select>
+	
+	<select id="normTotalRecord" resultType="int">
+		select count(no) from
+			(select np.userid, ng.no, s.sportname, ng.gametime, si.stadium, ng.g_status, ng.gametime-2 gt2ago from norm_game ng
+			join n_participate np
+			on np.no = ng.no and np.userid=#{param1}
+			join stadium_info si
+			on si.st_no = ng.st_no
+			join sport s
+			on s.s_no = ng.s_no
+			order by ng.gametime desc)
+	</select>
+	
+	<select id="rank" resultType="com.gather.we.dto.MypageRankDTO">
+		select rp.userid, rg.no, rg.gametime, rp.rank, rg.g_status, s.sportname, 
+		floor(avg(rp.rank) over(partition by s.sportname)) avg_sn, 
+		floor(avg(rp.rank) over(partition by rp.userid)) avg_all,
+		row_number() over(partition by s.sportname order by rg.gametime desc) rn
+		from (select * from rank_game where g_status=1 order by gametime desc) rg 
+		join (select * from r_participate where rank>=1) rp
+		on rp.no=rg.no and userid=#{param1}
+		join sport s 
+		on s.s_no = rg.s_no and sportname=#{param2}
+	</select>
+	
+	<select id="rankResult" resultType="com.gather.we.dto.MypageRankDTO">
+		select distinct rp.userid, s.sportname, 
+		floor(avg(rp.rank) over(partition by s.sportname)) avg_sn, 
+		floor(avg(rp.rank) over(partition by rp.userid)) avg_all
+		from (select * from rank_game where g_status=1 order by gametime desc) rg 
+		join (select * from r_participate where rank>=1) rp
+		on rp.no=rg.no and userid=#{param1}
+		join sport s 
+		on s.s_no = rg.s_no
+	</select>
+	
+	<select id="paymentList" resultType="com.gather.we.dto.MypagePaymentDTO">
+		select * from
+			(select * from
+				(select parti.no, parti.userid, u.username, to_char(game.gametime, 'yyyy-MM-dd HH24:MI') gametime, up.payment_no, up.paid_at, up.paid_amount, up.success
+				from user_pay up
+				join 
+				    (select no, userid, payment_no from r_participate rp
+				    union
+				    select no, userid, payment_no from n_participate np) parti
+				on up.payment_no = parti.payment_no 
+				join users u on u.userid=parti.userid and u.username=#{username}
+				join (select no, gametime from rank_game rg
+				      union
+				      select no, gametime from norm_game ng) game
+				on game.no=parti.no
+				<if test="SelectedDate != null and SelectedDate !=''">
+					where to_date(game.gametime)  <![CDATA[ <= ]]> to_date(#{SelectedDate})
+				</if>
+				order by game.gametime desc)
+				<![CDATA[
+				    where rownum<=${nowPage*onePageRecord} order by gametime asc
+				    	]]>
+			    		)
+			    		<choose>
+			    		<when test="nowPage!=totalPage">
+			    	<![CDATA[
+			    	where rownum<=${onePageRecord} order by gametime desc
+			    	]]>
+			    	</when>
+			    	<when test="nowPage==totalPage">
+			    	<![CDATA[
+			    	where rownum<=${lastPageRecord} order by gametime desc
+			    	]]>
+			    	</when>
+			    	</choose>
+	</select>
+	
+	<select id="paymentTotalRecord" resultType="int">
+		select count(payment_no) from
+			(select parti.no, parti.userid, u.username, to_char(game.gametime, 'yyyy-MM-dd HH24:MI') gametime, up.payment_no, up.paid_at, up.paid_amount, up.success
+			from user_pay up
+			join 
+			    (select no, userid, payment_no from r_participate rp
+			    union
+			    select no, userid, payment_no from n_participate np) parti
+			on up.payment_no = parti.payment_no 
+			join users u on u.userid=parti.userid and u.username=#{param1}
+			join (select no, gametime from rank_game rg
+			      union
+			      select no, gametime from norm_game ng) game
+			on game.no=parti.no
+			order by game.gametime desc)
+	</select>
+	
+	<update id="infoEdit">
+		update users set password=#{password}, email=#{email}, tel=#{tel}, address=#{address}, mbti=#{mbti}
+		where userid=#{userid}
+	</update>
+	
+	<delete id="gameCancel">
+		<choose>
+			<when test="no gt 1000"> 
+			delete from 
+			    (select * from user_pay up
+			    join r_participate rp on rp.payment_no = up.payment_no
+			    where rp.userid=#{userid} and rp.no=#{no})
+			</when>
+			<when test="no lt 1000">
+			delete from 
+			    (select * from user_pay up
+			    join n_participate np on np.payment_no = up.payment_no
+			    where np.userid=#{userid} and np.no=#{no})
+			</when>
+		</choose>
+	</delete>
+	
+</mapper>

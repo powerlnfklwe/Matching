@@ -1,0 +1,58 @@
+@charset "UTF-8";
+        /* 컨텐츠 컨테이너 */
+        #rank-container {margin-left:260px;flex:auto;padding:76px 78px;height:100vh;overflow-y:auto;}
+        #rank-container h1 {font-size:32px;margin:0 0 57px 80px;}
+        
+        /* 현재 참여 가능한 경기 수 */
+        .rank-caption {display:inline-block; font-weight:bold; margin-bottom:18px;font-size: 20px; margin-left: 79px;}
+		
+		/* 랭크경기 리스트 */
+        .rank-wrap {display:flex;flex-direction: row; margin-left: 90px;}
+        .rank-visual {margin-top:0px;margin-right:74px;margin-left:-21px;width:472px;height:886px;overflow:hidden; background-size: cover; background-position: center; background-repeat: no-repeat;border-radius:6px;}
+        .rank-list ul {margin:0;padding:0;}
+        .rank-item {position:relative;margin-bottom:57px;padding:37px 40px 30px;width:472px;min-height:170px;background-color: #F8F9FB;border:1px solid #D1D9E2;border-radius:6px;}
+        .rank-list .rank-item:last-child {margin-bottom:0;}
+        .rank-item strong {font-size:18px;font-weight:600;}
+        .rank-item p {margin-top:10px;line-height:1.6;font-size:16px;}
+        .rank-item span {font-size:14px;font-weight:600;}
+        .rank-item-btn {position:absolute;right:35px;top:35px;}
+        .rank-item-btn button {display:block;font-size:12px;width:88px;height:36px;font-weight:600;border-radius:6px;}
+        .rank-item-btn button + button {margin-top:13px;}
+        .rank-item-btn .btn-location {color:#5F6D7E;border:1px solid #D1D9E2;background-color:#E6E9EC;}
+        .rank-item-btn .btn-apply {color:#F8F9FB;border:0;background-color:#656363;}
+		
+		/* 지역 필터 */
+		.filter-wrap{width:734px; margin-bottom:10px;}
+		.filter-container{display:inline-block; float:right;}
+		.filter-container select {font-size:18px; padding:7px; text-align:center;background-color: #F8F9FB;border:1px solid #D1D9E2;border-radius:6px;}
+		
+		/* 신청하기 모달 */
+        #rank-dim {position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(45, 45, 45, 0.3);}
+        .rank-apply-popup {position:absolute;transform:translate(-50%,-50%);left:50%;top:50%;padding:91px 0 78px;width:1096px;text-align:center;border:1px solid #000;background-color:#F8F9FB;border-radius:12px;}
+        .rank-apply-popup .btn-popup-close {position:absolute;top:47px;right:68px;padding:0;width:38px;height:40px;font-size:0;text-indent:-9999px;overflow:hidden;background:transparent url('./static/img/manager/btn_close.png') no-repeat center;background-size:contain;}
+        .rank-apply-popup .apply-info {margin:0 auto 50px;padding:24px 0;width:403px;text-align:center;border:1px solid #757575;border-radius:6px;}
+        .rank-apply-popup .apply-info strong {font-size:22px;font-weight:600;}
+        .rank-apply-popup .apply-info p {padding-top:20px;font-size:16px;line-height:1.7;}
+        .rank-apply-popup .apply-info span {font-size:12px;font-weight:600;}
+        .rank-apply-popup em {font-size:24px;font-weight:600;font-style:normal;}
+        .rank-apply-popup .apply-btn {margin-top:44px;}
+        .rank-apply-popup .apply-btn button {width:90px;height:36px;font-size:14px;font-weight:600;border-radius:6px;}
+        .rank-apply-popup .apply-btn .btn-apply-cancel {color:#2E3646;background-color:#EFEFEF;}
+        .rank-apply-popup .apply-btn .btn-apply-go {margin-left:60px;color:#FFFFFF;background-color:#656363;border-radius:6px;}
+        
+        /* 지도 모달 */
+        #rank-map-dim {position:fixed;left:0;top:0;right:0;bottom:0;background:rgba(45, 45, 45, 0.3);}
+        #rank-map-dim .rank-map-popup {position:absolute;transform:translate(-50%,-50%);left:50%;top:50%;text-align:center;border:1px solid #000;background-color:#F8F9FB;}
+        #rank-map-dim .rank-map-popup {width: 50%;height: 70%;}
+        
+        /* 페이지네이션 */ 
+	  	.pagination-container{margin-top:13px;}
+		.pagination-container ul {list-style:none;display:flex;justify-content:center;align-items:center;}
+		.pagination li {margin:0 5px;border:1px solid #ccc;padding:5px 10px;}
+		.pagination li.active {background-color:gray;border-color:#F8F9FB;}
+		.pagination li:hover {background-color:#F8F9FB;}
+		.pagination li a {color:black;}
+		.pagination li.active a {color:white;}
+		.pagination li:hover a {color:black;font-weight:bold;text-decoration:underline;}	
+		
+}

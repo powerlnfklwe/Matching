@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.ParticipateDAO">
+	<insert id="rParticipateInsert" parameterType="com.gather.we.dto.RParticipateDTO">
+ 		insert into r_participate(p_no, userid, no, payment_no)
+ 		values(rankpart_sq.nextval, #{userid}, ${no}, #{payment_no})
+ 	</insert>
+ 	
+ 	<insert id="nParticipateInsert" parameterType="com.gather.we.dto.NParticipateDTO">
+ 		insert into n_participate(p_no, userid, no, payment_no)
+ 		values(normpart_sq.nextval, #{userid}, ${no}, #{payment_no})
+ 	</insert>
+ 	
+ 	<select id="isNormParticipate" resultType="int">
+ 		select count(no) from
+ 			(select * from n_participate where userid=#{param1} and no=${param2})
+ 	</select>
+ 	
+ 	<select id="isRankParticipate" resultType="int">
+ 		select count(no) from
+ 			(select * from r_participate where userid=#{param1} and no=${param2})
+ 	</select>
+
+ 	<select id="userRankOfSport" resultType="int">
+		select floor(avg(rank)) from r_participate p
+		inner join rank_game r on p.no=r.no
+		where userid=#{userid} and s_no=${s_no}
+	</select>
+
+</mapper>

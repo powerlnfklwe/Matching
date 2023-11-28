@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+body {
+	display: flex;
+}
+
+/* 관리자 네비게이션 bar */
+#manager-nav { 
+	width: 260px;
+	min-height: 100vh;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: var(--color-manager-dark-green);
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 0 16px;
+	
+}
+
+#manager-nav #logo{
+	width: 200px;
+	margin-top: 26px;
+}
+
+#manager-nav .menu-container {
+	display: flex;
+	flex-direction: column;
+	width: 220px;
+	margin-top: 40px;
+	margin-bottom: 100px;
+	cursor: pointer;
+}
+
+/* 네비게이션 메뉴 */
+#manager-nav .menu { 
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: 50px;
+	border-bottom: 1px solid var(--color-admin-gray);
+	padding: 8px 12px;
+	color: var(--color-white);
+}
+
+#manager-nav .menu-info {
+	display: flex;
+	align-items: center;
+}
+
+#manager-nav .hexagon_icon {
+	width: 16px;
+	margin-right: 8px;
+}
+
+#manager-nav .menu-title.active { /* 메뉴 활성화 시 적용되는 스타일 */
+	font-weight: var(--weight-bold);
+}
+
+#manager-nav .chevron_down_icon {
+	width: 20px;
+	display: none;
+}
+
+#manager-nav .chevron_down_icon.active { /* 메뉴 활성화 시 적용되는 스타일 */
+	display: block;
+}
+
+/* 네비게이션 서브메뉴 */
+#manager-nav .sub-menu-container{
+	display: none;
+}
+
+#manager-nav .sub-menu-container.active { /* 서브메뉴 활성화 시 적용되는 스타일 */
+	display: block;
+}
+
+#manager-nav .sub-menu {
+	background-color: var(--color-manager-light-green);
+}
+
+#manager-nav .page {
+	height: 46px;
+}
+
+#manager-nav .page-link {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	padding: 8px 40px;
+}
+
+#manager-nav .page-link:link, .page-link:visited, .page-link:hover, .page-link:focus {
+	color: var(--color-dark-gray);
+}
+
+#manager-nav .page-link.active { /* 페이지 활성화 시 적용되는 스타일 */
+	color: var(--color-black);
+	font-weight: var(--weight-bold);
+}
+
+#manager-nav .minus_circle_icon {
+	width: 16px;
+	margin-right: 8px;
+}
+
+/* manager-info */
+#manager-nav .manager-info-container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 220px;
+	height: 50px;
+	padding: 8px 12px;
+	position: absolute;
+	bottom: 10px;
+}
+
+#manager-nav .manager-info {
+	display: flex;
+	align-items: center;
+}
+
+#manager-nav .user_icon {
+	width: 24px;
+	margin-right: 8px;
+}
+
+#manager-nav .managerid {
+	color: var(--color-white);
+}
+
+#manager-nav .logout_icon {
+	width: 20px;
+}

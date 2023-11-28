@@ -1,0 +1,146 @@
+@charset "utf-8";
+
+#applyListContent{
+	/*
+	margin-left: 300px;
+	margin-top: 50px;
+	margin-right: 5px;
+	margin-bottom: 50px;
+	*/
+	/* background: #ddd; */
+	font-size: 18px;
+	margin-left: 285px;
+	padding-top: 70px;
+	height: 1100px;
+}
+/*상부 스타일*/
+.aplh3{
+	text-align: right;
+}
+.aplBtn{
+	margin-top: 20px
+}
+/*버튼 스타일*/
+.applyListBtn{
+	/* background-color: #D8DDF4; cadetblue;
+    margin-right: 10px;
+    padding: 8px;
+    width: 100px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px #4D4D86;
+    color: #37375D;
+    font-size: 16px;
+    font-weight: 500; */
+    background: cadetblue;
+    margin-right: 10px;
+    padding: 8px;
+    width: 100px;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px darkseagreen;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+}
+/*달력 필터*/
+#aplSelectFrm{
+	text-align: right;
+    display: inline-block;
+    width: 565px;
+    margin-top: 7px;
+    position: absolute;
+    margin-left: 6px;
+}
+#SelectedDate{
+	text-align: center;
+	height: 35px;
+    width: 165px;
+}
+
+/*---- table --------------*/
+#aplTable{
+	height: 800px;
+	display: inline-block;
+	margin-top: 12px;
+	width: 915px;
+	/* overflow-y: scroll;   	페이징 하자*/
+ 	/* overflow-y: clip; */ 
+}
+#aplTable td,
+#aplTable th{
+	text-align: center;
+	/* width:15%; */
+	padding: 17px;
+}
+#aplTable tr{
+	border-block: 1px solid #ddd;
+}
+#aplThead{
+	/* background: #51516A;
+	color: white;
+	font-weight: 500; */
+	font-weight: 500;
+    border-bottom: 2px solid darkgray;
+    border-top: 2px solid darkgray;
+}
+/* .aplTbody{
+	    box-shadow: 0px 0px 2px rgba(0,0,0,.25);
+} */
+#aplThTr .aplTh{
+	width: 120px; 
+}
+#aplThTr>#aplDate{
+ 	width: 200px;
+ }
+#aplThTr>#aplStadium{
+	width: 370px;
+}  
+
+#aplThTr>#aplStatus{
+ 	width: 190px;
+}
+.aplLink{
+	font-weight: 600;
+	color: #343230; /*색상 변경하기*/
+	/* text-decoration: underline;
+    text-underline-position: under; */
+} 
+.aplLink a:link, 
+.aplLink a:hover, 
+.aplLink a:visited{
+	color: var(--color-dark-gray);
+}
+.aplStatus{
+ 	font-style: italic;
+ }
+#aplTbTr .rg{
+	background: #FFDDC9;
+	font-weight: 600 ;
+	font-size: 18px;
+	color: #525150;
+	
+}
+#aplTbTr .ng{
+	background: #D4E5FF;
+	font-weight: 600;
+	font-size: 18px;
+	color: #525150;
+} 
+
+#applyListContent .pagingDiv {
+	display: flex;
+	justify-content: center;
+}
+
+#applyListContent .pagingDiv li{
+	float:left;
+	display: flex;
+	padding: 3px 5px;
+	margin: 0 12px;
+	font-size: var(--font-micro);
+}
+
+#applyListContent .pagingDiv a:link,
+#applyListContent .pagingDiv a:hover,
+#applyListContent .pagingDiv a:visited {
+	color: var(--color-black);
+}

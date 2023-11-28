@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gather.we.dao.RankBoardDAO">
+	<select id="getUserRankList" resultType="com.gather.we.dto.RankBoardDTO">
+	    SELECT r_participate.userid, 
+	    sport.sportname, 
+	    AVG(CASE WHEN r_participate.rank = 0 THEN NULL ELSE r_participate.rank END) as rank_avg
+		FROM r_participate 
+	    	JOIN rank_game ON r_participate.no = rank_game.no 
+	    	JOIN sport ON rank_game.s_no = sport.s_no
+		GROUP BY r_participate.userid, sport.sportname
+		HAVING AVG(CASE WHEN r_participate.rank = 0 THEN NULL ELSE r_participate.rank END) IS NOT NULL
+		ORDER BY rank_avg DESC, r_participate.userid, sport.sportname
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+	SELECT COUNT(*) FROM (
+        SELECT r_participate.userid, 
+        sport.sportname, 
+        AVG(r_participate.rank) as rank_avg
+        FROM r_participate 
+            JOIN rank_game ON r_participate.no = rank_game.no 
+            JOIN sport ON rank_game.s_no = sport.s_no
+        WHERE 1=1
+        <if test="keyword != null and keyword != ''">
+	    	AND r_participate.userid LIKE '%' || #{keyword} || '%'
+	    </if>
+	    <if test="sportname != null and sportname !=''">
+	        AND sport.sportname = #{sportname}
+	    </if>
+        GROUP BY r_participate.userid, sport.sportname
+        HAVING AVG(r_participate.rank) IS NOT NULL AND AVG(r_participate.rank) &lt;&gt; 0
+    )
+	</select>
+	
+	<select id="getListWithPaging" resultType="com.gather.we.dto.RankBoardDTO">
+       	SELECT rownum rnum, t.*
+        FROM (
+            SELECT r_participate.userid, 
+            sport.sportname, 
+            AVG(CASE WHEN r_participate.rank = 0 THEN NULL ELSE r_participate.rank END) as rank_avg
+            FROM r_participate 
+                JOIN rank_game ON r_participate.no = rank_game.no 
+                JOIN sport ON rank_game.s_no = sport.s_no
+            WHERE 1=1
+            <if test="keyword != null and keyword != ''">
+            	AND r_participate.userid LIKE '%' || #{keyword} || '%'
+            </if>
+            <if test="sportname != null and sportname !=''">
+            	AND sport.sportname = #{sportname}
+            </if>
+            GROUP BY r_participate.userid, sport.sportname
+            HAVING AVG(CASE WHEN r_participate.rank = 0 THEN NULL ELSE r_participate.rank END) IS NOT NULL
+            ORDER BY rank_avg DESC, r_participate.userid, sport.sportname
+        ) t
+	</select>
+	
+</mapper>  

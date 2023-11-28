@@ -1,0 +1,66 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<footer>
+<div class="foot-main-container">
+	<div class="container-lg" id="main-container">
+		<div class="d-flex justify-content-lg-center">
+			<div class="flex-item align-self-center" id="foot-box1">
+				<div class="foot-table">
+      				<div class="foot-table-row">
+        				<div class="foot-table-cell">
+								<ul id="foot-content1">
+									<li>
+										<a class="foot-link" href="${path}/userHome">Home</a>
+									</li>
+									<li>
+										<a class="foot-link" href="${path}/rankgame/sportlist">랭크경기</a>
+									</li>
+									<li>
+										<a class="foot-link" href="${path}/normgame/sportlist">일반경기</a>
+									</li>
+								</ul>
+						</div>
+				 	</div>
+				</div>
+			</div>
+		    <div class="flex-item align-self-center" id="foot-box2">
+				<ul id="foot-content2">
+					<li>
+	          			<img src="${path}/static/img/logo/logo 4.png" alt="Logo" id="foot-logo" style="width:250px;">
+	        		</li>
+	        		<li>
+	          			Copyright © 2023 WeGather. All rights reserved.
+	        		</li>
+				</ul>
+			</div>
+		    <div class="flex-item align-self-center" id="foot-box3">
+		    	<ul id="foot-content3">
+					<li>
+	          			<a class="foot-link" href="${path}/board/noticeBoard">공지사항</a>
+	        		</li>
+	        		<li>
+	          			<a class="foot-link" href="${path}/board/requestBoard">건의사항</a>
+	        		</li>
+				</ul>
+		    </div>
+		</div>
+	</div>
+</div>
+
+<div class="foot-sub-container">
+	<div class="container-lg" id="sub-container">
+		<div class="d-flex justify-lg-content-center">
+			<ul id="foot-content4">
+				<li>
+					Team : Together (Multicampus Team 4th)
+				</li>
+				<li>
+					대표전화 : 1544-9001
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+</footer>
+</body>
+</html>

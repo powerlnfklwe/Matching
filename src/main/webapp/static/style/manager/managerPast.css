@@ -1,0 +1,134 @@
+@charset "UTF-8";
+
+#past-container {
+	margin-left:340px;
+	flex: auto;
+	padding: 76px 78px;
+	height: 100vh;
+	overflow-y: auto;
+}
+
+#past-container h1 {
+	font-size:32px;
+	margin-bottom: 57px;
+}
+
+#past-container .past-caption {
+	margin-bottom:18px;
+	font-size: 18px;
+}
+
+#past-container .game-list {
+	width: 1200px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+#past-container .game-list ul {
+	margin: 0;
+}
+
+#past-container .game {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+    width: 520px;
+    min-height: 170px;
+	margin-bottom: 57px;
+    padding: 37px 40px 30px;
+    background-color: #F8F9FB;
+    border: 1px solid #D1D9E2;
+    margin-right: 60px;
+    border-radius:6px;
+}
+
+#past-container .stadium {
+	font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+#past-container .location {
+    margin-top: 6px;
+}
+
+#past-container .btns {
+	width: 88px;
+}
+
+#past-container #rank-btn {
+	font-size: 12px;
+    width: 120px;
+    height: 36px;
+    font-weight: 600;
+    border-radius: 6px;
+    background-color: #656363;
+	color: #F8F9FB;
+	margin-top: 20px;
+}
+
+.pagination-container{
+	width: 1200px;
+}
+
+.pagingDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  align-self: center; 
+  right: 45px;
+  position:relative;
+}
+
+
+
+.pagingDiv ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.pagingDiv ul li {
+  margin: 0 5px;
+}
+
+.pagingDiv ul li a,
+.pagingDiv ul li span {
+  display: block;
+  padding: 5px 10px;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  text-decoration: #ccc;
+}
+
+.pagingDiv ul li a:hover {
+  background-color: #ccc;
+}
+
+.pagingDiv ul li span {
+  background-color: #ccc;
+  pointer-events: #ccc;
+}
+
+.pagingDiv ul li:first-child a,
+.pagingDiv ul li:first-child span {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.pagingDiv ul li:last-child a,
+.pagingDiv ul li:last-child span {
+
+}
+#past-container .active{
+	display: block; 
+  padding: 5px 10px;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+}

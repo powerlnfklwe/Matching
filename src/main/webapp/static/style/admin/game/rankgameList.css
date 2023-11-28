@@ -1,0 +1,83 @@
+@charset "UTF-8";
+
+/* 랭크경기 목록 */
+#ranklist_container {
+	display: flex;
+	flex-direction: column;
+}
+
+#ranklist_container table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+	background-color: var(--color-white);
+	border-radius: 20px;
+}
+
+#ranklist_container th, 
+#ranklist_container td {
+	padding: 14px;
+	border-bottom: 2px solid #f3f3f3;
+}
+
+#ranklist_container th:nth-of-type(1) {
+	width: 8%;
+	border-radius: 20px 0 0 0;
+}
+
+#ranklist_container th:nth-of-type(2) {
+	width: 10%;
+}
+
+#ranklist_container th:nth-of-type(3) {
+	width: 27%;
+}
+
+#ranklist_container th:nth-of-type(4) {
+	width: 25%;
+}
+
+#ranklist_container th:nth-of-type(5) {
+	width: 12%;
+}
+
+#ranklist_container th:nth-of-type(6) {
+	width: 10%;
+}
+
+#ranklist_container th:nth-of-type(7) {
+	width: 8%;
+	border-radius: 0 20px 0 0;
+}
+
+#ranklist_container th {
+	background: #d1d9e2;
+	font-weight: var(--weight-bold);
+}
+
+#ranklist_container .stadium {
+	color: var(--color-black);
+}
+
+#ranklist_container .new-game {
+	align-self: end;
+}
+
+#ranklist_container .pagingDiv {
+	display: flex;
+	justify-content: center;
+}
+
+#ranklist_container .pagingDiv li{
+	float:left;
+	display: flex;
+	padding: 3px 5px;
+	margin: 0 12px;
+	font-size: var(--font-micro);
+}
+
+#ranklist_container .pagingDiv a:link,
+#ranklist_container .pagingDiv a:hover,
+#ranklist_container .pagingDiv a:visited {
+	color: var(--color-black);
+}

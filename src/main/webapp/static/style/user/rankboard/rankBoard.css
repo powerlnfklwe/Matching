@@ -1,0 +1,55 @@
+@charset "UTF-8";
+		/*테이블*/
+		.tc {text-align: center;}
+		#rankboard-container {flex:auto;padding:40px 78px;height:auto;width:1400px;margin:0 auto;}
+		#rankboard-container h1 {font-size:32px;margin: 0 0 57px 0;}
+		.rankboard-table {border-collapse:collapse;border-top: 2px solid #eee;border-spacing:0;width:100%;color: #757575; margin-bottom: 5px;}
+		.rankboard-table th, td {padding:6px 15px; font-weight: bold;}
+		.rankboard-table thead th {height: 40px;font-size: 18px; font-weight: bold;}
+		.rankboard-table tbody tr {height: 50px;font-size: 18px; background-color: #FCFCFC;border-bottom: 2px solid #fff;}
+		.rankboard-table tbody tr:nth-child(odd) {background-color: #F6F6F6;border-bottom: 2px solid #fff;}
+		.blue{background-color:#ebf9ff !important;}
+		.tc.rank{position:relative;}
+		.tc .num {position: absolute;left:40px;top:10px;}
+		.tc.rank img{position:absolute;left:29px;top:4px;}
+		.rk-system-name{margin-bottom:10px;}
+		
+	
+		.ranksystem-container {flex:auto;padding:40px 78px;height:auto;width:1400px;margin:0 auto; padding-bottom: 0px;}
+		.ranksystem-container ul{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+		.rk-system-item{border: 2px #eee solid;padding:5px; border-radius: 5px; text-align:center;}
+		.rk-system-script p{font-size: 16px;}
+		.text-info-norank{font-size:18px;line-height: 14px; font-weight:bold;}
+		.text-info-bronze{color:#AD5600; font-size:18px;line-height: 14px;font-weight:bold;}
+		.text-info-silver{color:#A4A8AD; font-size:18px;line-height: 14px;font-weight:bold;}
+		.text-info-gold{color:#EC9A00; font-size:18px;line-height: 14px;font-weight:bold;}
+		.text-info-platinum{color:#20D874; font-size:18px;line-height: 14px;font-weight:bold;}
+		.text-info-dia{color:#3682F4; font-size:18px;line-height: 14px;font-weight:bold;}
+		
+		/*검색,필터*/
+		.search_area .search-form {height:50px;display: flex; align-items: center; margin-bottom:10px;}		
+		.search_area .search-form * {height:40px;background-color:#fff;border:1px solid #e1e1e5;margin:5px 20px 5px 0px;}
+		.search_area form select {width: 110px;}
+		
+		#search-word {width:500px;margin-left: auto;margin-right:0px;padding:0px;border-right: 0px;}
+		#submit-btn {width:60px;font-size:14px;font-family:'Noto Sans', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif; color:#000000; font:bold;margin:0; padding:0;border-left: 0px;}
+		.search_area form select {height: 40px;}
+		#sportname {margin-top:5px;margin-left:0px;font-size:16px;font-family:'Noto Sans', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;color:#000000;}
+		
+		/* 페이지네이션 */
+		.pagination-container{margin-top:13px;}
+		.pagination-container ul {list-style:none;display:flex;justify-content:center;align-items:center;}
+		.pagination li {margin:0 5px;border:1px solid #ccc;padding:5px 10px;cursor:pointer;}
+		.pagination li.active {background-color:gray;border-color:#F8F9FB;}
+		.pagination li:hover {background-color:#F8F9FB;}
+		.pagination li a {color:black;}
+		.pagination li.active a {color:white;}
+		.pagination li:hover a {color:black;font-weight:bold;text-decoration:underline;}	
+	
+		/*이미지*/
+		.img-box{width:100%; height:230px; overflow:hidden; margin:0px; position:relative;}
+		.img-box img{width:100%; position:absolute; top:40%; left:50%; transform:translate(-50%,-50%);opacity: 0.9;}
+		.rankboard_title{position:absolute; z-index:1;top:30%; left:43%;font-size:var(--font-large);font-weight:var(--weight-bold); color:white;}
+		.img-box img{width:100%; position:absolute; top:40%; left:50%; transform:translate(-50%,-50%);opacity: 1;}
+		.rankboard_title{position:absolute; z-index:1;top:30%; left:43%;font-size:var(--font-large);font-weight:var(--weight-bold); color:white;}
+		.img-box:after {display:block; width:100%; height:230px; content:''; background-color:var(--color-black); opacity:0.3; position:absolute; left:0; top:0;}
