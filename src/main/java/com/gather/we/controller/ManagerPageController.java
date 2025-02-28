@@ -179,7 +179,7 @@ public class ManagerPageController{
 		         mav.addObject("managerInputList", managerInputList);
 		     }
 		     
-		    mav.addObject("managerInputList", managerInputList);
+		    mav.addObject("managerInputList", managerInputList); 
 		     mav.addObject("no", no);
 		     mav.setViewName("/manager/managerInput");
 
@@ -215,7 +215,7 @@ public class ManagerPageController{
 		 public ModelAndView getAllEntry(@RequestParam(name = "no", defaultValue = "0") Integer no) {
 		     ModelAndView mav = new ModelAndView();
 		     
-		     // 1. 해당 경기에 참여한 회원 정보를 가져옵니다.
+		     // 1. 해당 경기에 참여한 회원 정보를 가져옴
 		     List<ManagerInfoDTO> entryList = service.getAllEntry(no);
 		     
 		     if (entryList.isEmpty()) { // 데이터베이스 조회 결과가 비어있을 경우
